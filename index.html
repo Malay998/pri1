@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Convergence: 1 Month with Priyanshi</title>
+    <title>Cosmic Love: 1 Month with Priyanshi</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
     <style>
         :root {
@@ -21,16 +21,19 @@
             --starlight-cyan: #00e5ff;
             --galaxy-purple: #9d4edd;
             --nova-pink: #ff4fd8;
+            --love-red: #ff3366;
             
             --gradient-primary: linear-gradient(135deg, #1a1aff 0%, #00e5ff 50%, #9d4edd 100%);
-            --gradient-secondary: linear-gradient(135deg, #ff4fd8 0%, #9d4edd 50%, #1a1aff 100%);
+            --gradient-secondary: linear-gradient(135deg, #ff3366 0%, #ff4fd8 50%, #9d4edd 100%);
+            --gradient-love: linear-gradient(135deg, #ff3366 0%, #ff4fd8 50%, #1a1aff 100%);
             
-            --glass-bg: rgba(10, 10, 26, 0.7);
+            --glass-bg: rgba(10, 10, 26, 0.85);
             --glass-border: rgba(26, 26, 255, 0.3);
-            --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
             
             --neon-blue: 0 0 25px rgba(26, 26, 255, 0.7);
             --neon-cyan: 0 0 30px rgba(0, 229, 255, 0.5);
+            --neon-pink: 0 0 25px rgba(255, 79, 216, 0.6);
             
             --text-primary: #ffffff;
             --text-secondary: #b8c1ec;
@@ -43,25 +46,35 @@
             box-sizing: border-box;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
         body {
             background: 
-                radial-gradient(circle at 10% 20%, rgba(26, 26, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 10% 20%, rgba(26, 26, 255, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 51, 102, 0.1) 0%, transparent 50%),
                 var(--deep-space);
             color: var(--text-primary);
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
             background-attachment: fixed;
+            min-height: 100vh;
         }
         
         h1, h2, h3, .serif {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
+        }
+        
+        .script {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        /* SMOOTH SCROLL */
+        html.lenis {
+            height: auto;
+        }
+        
+        .lenis.lenis-smooth {
+            scroll-behavior: auto;
         }
         
         /* LOADING SCREEN */
@@ -82,7 +95,7 @@
         .loading-title {
             font-size: 4rem;
             margin-bottom: 30px;
-            background: var(--gradient-primary);
+            background: var(--gradient-love);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -110,7 +123,7 @@
         .loading-bar {
             height: 100%;
             width: 0%;
-            background: var(--gradient-primary);
+            background: var(--gradient-love);
             border-radius: 2px;
             transition: width 0.3s ease;
         }
@@ -147,14 +160,14 @@
         }
         
         .hero-title {
-            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-size: clamp(3.5rem, 10vw, 8rem);
             line-height: 1;
             margin-bottom: 20px;
             position: relative;
         }
         
         .hero-title span {
-            background: var(--gradient-primary);
+            background: var(--gradient-love);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -169,7 +182,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: var(--gradient-primary);
+            background: var(--gradient-love);
             border-radius: 2px;
         }
         
@@ -190,7 +203,7 @@
             font-size: 1.1rem;
             letter-spacing: 2px;
             margin-top: 30px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             box-shadow: var(--glass-shadow);
         }
         
@@ -210,7 +223,7 @@
             padding: 30px 20px;
             min-width: 140px;
             text-align: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             box-shadow: var(--glass-shadow);
             transition: all 0.3s ease;
             position: relative;
@@ -224,7 +237,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gradient-primary);
+            background: var(--gradient-love);
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: -1;
@@ -232,7 +245,7 @@
         
         .counter-box:hover {
             transform: translateY(-10px);
-            box-shadow: var(--neon-blue);
+            box-shadow: var(--neon-pink);
         }
         
         .counter-box:hover::before {
@@ -242,7 +255,7 @@
         .counter-number {
             font-size: 3.5rem;
             font-weight: 700;
-            background: var(--gradient-primary);
+            background: var(--gradient-love);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -258,397 +271,291 @@
             color: var(--text-dim);
         }
         
-        /* MILESTONE CARDS */
-        .milestones-section {
+        /* LOVE STORY TIMELINE */
+        .timeline-section {
             padding: 100px 5%;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
         
         .section-title {
             font-size: 3.5rem;
             text-align: center;
             margin-bottom: 80px;
-            background: var(--gradient-primary);
+            background: var(--gradient-love);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
         
-        .milestones-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
-        .milestone-card {
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gradient-love);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin: 80px 0;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-end;
+            padding-right: calc(50% + 30px);
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-left: calc(50% + 30px);
+        }
+        
+        .timeline-content {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 40px 30px;
-            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(20px);
             box-shadow: var(--glass-shadow);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
         
-        .milestone-card::before {
+        .timeline-content::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--gradient-primary);
+            background: var(--gradient-love);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.5s ease;
         }
         
-        .milestone-card:hover {
-            transform: translateY(-15px) scale(1.03);
+        .timeline-content:hover {
+            transform: translateY(-10px);
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                var(--neon-blue);
+                0 30px 70px rgba(0, 0, 0, 0.7),
+                var(--neon-pink);
         }
         
-        .milestone-card:hover::before {
+        .timeline-content:hover::before {
             transform: scaleX(1);
         }
         
-        .milestone-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-        
-        .milestone-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-        }
-        
-        .milestone-desc {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        
-        /* LOVE METER */
-        .love-meter-section {
-            padding: 100px 5%;
-            text-align: center;
-        }
-        
-        .love-meter-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 50px 40px;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--glass-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .love-meter-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .meter-bar-container {
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            position: relative;
-            border: 1px solid var(--glass-border);
-        }
-        
-        .meter-bar {
-            height: 100%;
-            width: 100%;
-            background: var(--gradient-primary);
-            border-radius: 20px;
-            position: relative;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 2s cubic-bezier(0.22, 0.61, 0.36, 1);
-        }
-        
-        .meter-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.4), 
-                transparent);
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .meter-percentage {
-            font-size: 4rem;
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 10px;
-        }
-        
-        .meter-text {
+        .timeline-date {
             font-size: 1.2rem;
+            background: var(--gradient-love);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .timeline-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
             color: var(--text-secondary);
-            margin-top: 20px;
         }
         
-        /* MESSAGE GRID */
-        .messages-section {
-            padding: 100px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--gradient-love);
+            box-shadow: var(--neon-pink);
+            z-index: 1;
         }
         
-        .messages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .message-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 40px 30px;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--glass-shadow);
-            transition: all 0.3s ease;
+        /* IMPROVED GALLERY SECTION */
+        .gallery-section {
+            padding: 150px 5% 100px;
             position: relative;
             overflow: hidden;
-        }
-        
-        .message-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.5),
-                var(--neon-cyan);
-        }
-        
-        .message-card:nth-child(2n):hover {
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.5),
-                var(--neon-blue);
-        }
-        
-        .message-content {
-            font-size: 1.3rem;
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-        
-        .message-tag {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(26, 26, 255, 0.2);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            color: var(--starlight-cyan);
-        }
-        
-        /* GALAXY GALLERY */
-        .gallery-section {
-            padding: 100px 5%;
-            position: relative;
         }
         
         .gallery-container {
-            display: flex;
-            overflow-x: scroll;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            padding: 40px 0;
-            gap: 40px;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        
-        .gallery-container::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .gallery-item {
-            flex: 0 0 auto;
-            width: 400px;
-            height: 500px;
-            scroll-snap-align: center;
-            border-radius: 25px;
-            overflow: hidden;
             position: relative;
+            width: 100%;
+            height: 700px;
+            overflow: hidden;
+            border-radius: 30px;
+            border: 2px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
-            transition: transform 0.5s ease;
+            background: rgba(5, 5, 16, 0.6);
+            backdrop-filter: blur(10px);
         }
         
-        .gallery-item:hover {
-            transform: scale(1.05);
+        .gallery-track {
+            display: flex;
+            height: 100%;
+            width: max-content;
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+        }
+        
+        .gallery-slide {
+            width: 100vw;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
         
         .gallery-image {
-            width: 100%;
-            height: 100%;
+            width: 90%;
+            height: 90%;
             object-fit: cover;
-            transition: transform 0.8s ease;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            transition: transform 0.5s ease;
         }
         
-        .gallery-item:hover .gallery-image {
-            transform: scale(1.1);
+        .gallery-slide:hover .gallery-image {
+            transform: scale(1.03);
         }
         
-        .gallery-overlay {
+        .gallery-nav {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 30px;
-            background: linear-gradient(to top, rgba(5, 5, 16, 0.9), transparent);
-            color: white;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .gallery-title {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        
-        .gallery-desc {
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-        
-        /* COUNTDOWN TO 2 MONTHS */
-        .countdown-section {
-            padding: 100px 5%;
-            text-align: center;
-            background: 
-                radial-gradient(circle at center, rgba(26, 26, 255, 0.1) 0%, transparent 70%);
-            border-radius: 40px;
-            margin: 100px 5%;
-        }
-        
-        .countdown-title {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .countdown-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 60px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .countdown-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .countdown-item {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 30px 20px;
-            min-width: 120px;
-            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            backdrop-filter: blur(20px);
             box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
         }
         
-        .countdown-value {
-            font-size: 3rem;
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
-            margin-bottom: 10px;
+        .gallery-nav:hover {
+            background: var(--gradient-love);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: var(--neon-pink);
         }
         
-        .countdown-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-dim);
+        .gallery-nav.prev {
+            left: 30px;
         }
         
-        /* FINAL MESSAGE */
-        .final-section {
+        .gallery-nav.next {
+            right: 30px;
+        }
+        
+        .gallery-nav span {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .gallery-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .gallery-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-indicator.active {
+            background: var(--gradient-love);
+            transform: scale(1.3);
+            box-shadow: var(--neon-pink);
+        }
+        
+        /* PASSWORD PROTECTED SECTION */
+        .private-section {
             padding: 150px 5%;
             text-align: center;
             position: relative;
         }
         
-        .final-message {
-            font-size: 2.5rem;
-            max-width: 900px;
-            margin: 0 auto 50px;
-            line-height: 1.5;
-            color: var(--text-primary);
+        .private-lock {
+            width: 120px;
+            height: 120px;
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
         }
         
-        .final-message span {
-            background: var(--gradient-secondary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 700;
+        .private-lock:hover {
+            transform: scale(1.1);
+            box-shadow: var(--neon-pink);
         }
         
-        .signature {
+        .private-lock span {
             font-size: 3rem;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            margin-top: 60px;
-            background: var(--gradient-primary);
+            background: var(--gradient-love);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
         
-        .confetti-btn {
-            background: var(--gradient-primary);
+        .private-input {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 20px 30px;
+            font-size: 1.2rem;
+            color: white;
+            width: 300px;
+            max-width: 80%;
+            margin: 20px auto;
+            backdrop-filter: blur(20px);
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .private-input:focus {
+            border-color: var(--nova-pink);
+            box-shadow: var(--neon-pink);
+        }
+        
+        .private-btn {
+            background: var(--gradient-love);
             border: none;
             padding: 18px 50px;
             color: white;
@@ -656,22 +563,293 @@
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: 50px;
+            margin-top: 20px;
             transition: all 0.3s ease;
             letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(26, 26, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.3);
         }
         
-        .confetti-btn:hover {
+        .private-btn:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 
-                0 15px 40px rgba(26, 26, 255, 0.5),
-                var(--neon-blue);
+                0 15px 40px rgba(255, 51, 102, 0.5),
+                var(--neon-pink);
+        }
+        
+        .private-message {
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+        
+        /* PRIVATE GALLERY (Hidden by default) */
+        .private-gallery {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 60px;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .private-photo {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .private-photo:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 30px 70px rgba(0, 0, 0, 0.8),
+                var(--neon-pink);
+        }
+        
+        .private-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .private-photo:hover img {
+            transform: scale(1.1);
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(5, 5, 16, 0.9), transparent);
+            padding: 30px 20px 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .private-photo:hover .photo-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .photo-date {
+            font-size: 0.9rem;
+            color: var(--starlight-cyan);
+            margin-bottom: 5px;
+        }
+        
+        /* LOVE LETTER SECTION */
+        .letter-section {
+            padding: 150px 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .letter-container {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 70px 60px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-love);
+        }
+        
+        .letter-content {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+        }
+        
+        .letter-content p {
+            margin-bottom: 40px;
+        }
+        
+        .letter-content span.highlight {
+            background: var(--gradient-love);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .letter-signature {
+            text-align: right;
+            margin-top: 60px;
+            font-size: 2.5rem;
+            font-family: 'Dancing Script', cursive;
+            background: var(--gradient-love);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* COUNTDOWN TO FOREVER */
+        .forever-section {
+            padding: 150px 5%;
+            text-align: center;
+            background: 
+                radial-gradient(circle at center, rgba(255, 51, 102, 0.15) 0%, transparent 70%);
+            border-radius: 40px;
+            margin: 100px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .forever-title {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            background: var(--gradient-love);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .forever-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .forever-clock {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .forever-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 40px 30px;
+            min-width: 150px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .forever-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-love);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .forever-box:hover::before {
+            opacity: 0.1;
+        }
+        
+        .forever-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--gradient-love);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+        
+        .forever-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-dim);
+        }
+        
+        /* FINAL MESSAGE */
+        .final-section {
+            padding: 200px 5% 150px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .final-message {
+            font-size: 3rem;
+            max-width: 900px;
+            margin: 0 auto 80px;
+            line-height: 1.4;
+            color: var(--text-primary);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        
+        .final-message span {
+            background: var(--gradient-love);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .signature {
+            font-size: 4rem;
+            font-family: 'Dancing Script', cursive;
+            font-style: italic;
+            margin-top: 60px;
+            background: var(--gradient-love);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .love-btn {
+            background: var(--gradient-love);
+            border: none;
+            padding: 20px 60px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 50px;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            box-shadow: 0 15px 40px rgba(255, 51, 102, 0.4);
+        }
+        
+        .love-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 25px 60px rgba(255, 51, 102, 0.6),
+                var(--neon-pink);
         }
         
         /* FOOTER */
         footer {
-            padding: 80px 5% 40px;
+            padding: 100px 5% 60px;
             text-align: center;
             border-top: 1px solid var(--glass-border);
             position: relative;
@@ -686,7 +864,7 @@
         .heart-pulse {
             display: inline-block;
             animation: pulse 2s infinite;
-            color: #ff4fd8;
+            color: #ff3366;
             font-size: 1.5rem;
         }
         
@@ -696,9 +874,97 @@
             100% { transform: scale(1); }
         }
         
+        /* MODAL FOR PRIVATE PHOTOS */
+        .photo-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 16, 0.95);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(20px);
+        }
+        
+        .photo-modal.active {
+            display: flex;
+            animation: modalFadeIn 0.4s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            box-shadow: var(--glass-shadow);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-love);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg) scale(1.1);
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 2px solid var(--glass-border);
+        }
+        
+        .modal-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: var(--gradient-love);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display';
+        }
+        
+        .modal-story {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-top: 20px;
+            color: var(--text-secondary);
+        }
+        
         /* SCROLLBAR */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 12px;
         }
         
         ::-webkit-scrollbar-track {
@@ -706,8 +972,8 @@
         }
         
         ::-webkit-scrollbar-thumb {
-            background: var(--gradient-primary);
-            border-radius: 5px;
+            background: var(--gradient-love);
+            border-radius: 6px;
         }
         
         /* RESPONSIVE */
@@ -720,22 +986,61 @@
                 font-size: 2.8rem;
             }
             
-            .milestones-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            .timeline::before {
+                left: 30px;
             }
             
-            .gallery-item {
-                width: 300px;
-                height: 400px;
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 20px;
+                justify-content: flex-start;
             }
             
-            .counter-box {
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .gallery-container {
+                height: 500px;
+            }
+            
+            .gallery-nav {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .gallery-nav.prev {
+                left: 15px;
+            }
+            
+            .gallery-nav.next {
+                right: 15px;
+            }
+            
+            .letter-container {
+                padding: 50px 40px;
+            }
+            
+            .final-message {
+                font-size: 2.2rem;
+            }
+            
+            .signature {
+                font-size: 3rem;
+            }
+            
+            .forever-title {
+                font-size: 3rem;
+            }
+            
+            .forever-box {
                 min-width: 120px;
-                padding: 25px 15px;
+                padding: 30px 20px;
             }
             
-            .counter-number {
-                font-size: 2.8rem;
+            .forever-number {
+                font-size: 3rem;
             }
         }
         
@@ -757,16 +1062,38 @@
                 font-size: 2.5rem;
             }
             
-            .messages-grid {
-                grid-template-columns: 1fr;
+            .gallery-container {
+                height: 400px;
+            }
+            
+            .letter-content {
+                font-size: 1.1rem;
+            }
+            
+            .forever-clock {
+                gap: 15px;
+            }
+            
+            .forever-box {
+                min-width: 100px;
+                padding: 25px 15px;
+            }
+            
+            .forever-number {
+                font-size: 2.5rem;
             }
             
             .final-message {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .signature {
                 font-size: 2.5rem;
+            }
+            
+            .love-btn {
+                padding: 16px 40px;
+                font-size: 1rem;
             }
         }
         
@@ -787,18 +1114,37 @@
                 font-size: 2.2rem;
             }
             
-            .countdown-item {
+            .timeline-content {
+                padding: 30px 20px;
+            }
+            
+            .gallery-container {
+                height: 300px;
+            }
+            
+            .private-input {
+                width: 250px;
+            }
+            
+            .forever-title {
+                font-size: 2.2rem;
+            }
+            
+            .forever-box {
                 min-width: 80px;
                 padding: 20px 10px;
             }
             
-            .countdown-value {
-                font-size: 2.2rem;
+            .forever-number {
+                font-size: 2rem;
             }
             
-            .confetti-btn {
-                padding: 15px 30px;
-                font-size: 1rem;
+            .final-message {
+                font-size: 1.5rem;
+            }
+            
+            .signature {
+                font-size: 2rem;
             }
         }
     </style>
@@ -806,12 +1152,12 @@
 <body>
     <!-- LOADING SCREEN -->
     <div class="loading-screen" id="loading-screen">
-        <h1 class="loading-title">Cosmic Connection</h1>
-        <p class="loading-subtitle">Initializing 1-month anniversary celebration for Priyanshi & Her Person</p>
+        <h1 class="loading-title">Cosmic Love Story</h1>
+        <p class="loading-subtitle">Loading our 1-month journey with Priyanshi</p>
         <div class="loading-bar-container">
             <div class="loading-bar" id="loading-bar"></div>
         </div>
-        <div class="loading-text" id="loading-text">Loading stardust memories...</div>
+        <div class="loading-text" id="loading-text">Counting stars in our universe...</div>
     </div>
     
     <!-- COSMIC BACKGROUND CANVAS -->
@@ -819,8 +1165,8 @@
     
     <!-- HERO SECTION -->
     <section class="hero">
-        <h1 class="hero-title">One <span>Cosmic</span> Month</h1>
-        <p class="hero-subtitle">Celebrating 30 days of laughter, conversations, and a connection that feels like it's written in the stars with the amazing Priyanshi Kochar.</p>
+        <h1 class="hero-title">From <span>4th January</span><br>to <span>forever</span> ♡</h1>
+        <p class="hero-subtitle">Celebrating one month of cosmic connection, infinite laughter, and a love that feels like destiny with my beautiful Priyanshi.</p>
         
         <div class="anniversary-date">
             JAN 09, 2026 → FEB 09, 2026
@@ -846,140 +1192,169 @@
         </div>
     </section>
     
-    <!-- MILESTONES SECTION -->
-    <section class="milestones-section">
-        <h2 class="section-title">Memory Constellations</h2>
-        <div class="milestones-grid">
-            <div class="milestone-card">
-                <div class="milestone-icon">✨</div>
-                <h3 class="milestone-title">The First Message</h3>
-                <p class="milestone-desc">That first "hey" that started it all. Who knew two words could lead to something this incredible?</p>
+    <!-- LOVE STORY TIMELINE -->
+    <section class="timeline-section">
+        <h2 class="section-title">Our Cosmic Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">January 4th</div>
+                    <div class="timeline-text">The day I first became aware that you existed. I didn't know then that you would slowly become someone so important to me, someone I would think about every single day.</div>
+                </div>
             </div>
-            <div class="milestone-card">
-                <div class="milestone-icon">💫</div>
-                <h3 class="milestone-title">First Late Night Talk</h3>
-                <p class="milestone-desc">Staying up until 3 AM because neither of us wanted to stop talking. That's when I knew this was special.</p>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">January 6th - VR Mall</div>
+                    <div class="timeline-text">The day I first saw you in real life. You looked so shy, so innocent, so cute… like this soft, pure soul standing in front of me. And I swear, the moment I saw you, something inside me just said — <em>there's something special about her.</em></div>
+                </div>
             </div>
-            <div class="milestone-card">
-                <div class="milestone-icon">🌌</div>
-                <h3 class="milestone-title">Inside Jokes Galaxy</h3>
-                <p class="milestone-desc">Building our own universe of jokes and references that nobody else would understand.</p>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">That First Meet</div>
+                    <div class="timeline-text">You called and asked, "Are you in H&M?" I went there… and you weren't there. Then I texted you, and you were like, "Main toh bahar aa gayi." And I was like, brooo 😭 Then I came outside… and that was it. That was the moment. Crazy how something so small turned into something so big for me.</div>
+                </div>
             </div>
-            <div class="milestone-card">
-                <div class="milestone-icon">🚀</div>
-                <h3 class="milestone-title">The Future Plans</h3>
-                <p class="milestone-desc">All the places we want to go and things we want to do together. This is just the launchpad.</p>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">The Comfort</div>
+                    <div class="timeline-text">What I still can't believe is how comfortable I felt with you on the first meet itself. Like… crazy wala crazy. Like I already knew you. Like I could already be myself around you.</div>
+                </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- LOVE METER -->
-    <section class="love-meter-section">
-        <div class="love-meter-container">
-            <h2 class="love-meter-title">Cosmic Compatibility Meter</h2>
-            <div class="meter-bar-container">
-                <div class="meter-bar" id="meter-bar"></div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">January 9th - Our First Kiss</div>
+                    <div class="timeline-text">I was nervous. Excited. Happy. Everything at once. That day made me realize how close we were getting, how natural everything felt with you.</div>
+                </div>
             </div>
-            <div class="meter-percentage" id="meter-percentage">99.9%</div>
-            <p class="meter-text">According to celestial calculations, we're basically meant to be. Science says so.</p>
-        </div>
-    </section>
-    
-    <!-- MESSAGES SECTION -->
-    <section class="messages-section">
-        <h2 class="section-title">Nebula Notes</h2>
-        <div class="messages-grid">
-            <div class="message-card">
-                <p class="message-content">"You have this incredible energy that makes everything brighter. One month in, and I already can't imagine my days without your chaos."</p>
-                <span class="message-tag">Energy Boost</span>
-            </div>
-            <div class="message-card">
-                <p class="message-content">"Our conversations flow like starlight - constant, beautiful, and illuminating even the darkest moments."</p>
-                <span class="message-tag">Starlight Talks</span>
-            </div>
-            <div class="message-card">
-                <p class="message-content">"30 days ago, you were a stranger. Today, you're my favorite notification, my best part of the day, and my person."</p>
-                <span class="message-tag">Favorite Human</span>
-            </div>
-            <div class="message-card">
-                <p class="message-content">"They say it takes time to build something real. But with you, it felt like coming home from day one."</p>
-                <span class="message-tag">Instant Connection</span>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Becoming "Us"</div>
+                    <div class="timeline-text">And slowly… we didn't just become two people meeting. We became <em>us.</em> Two people who trust each other. Who feel safe with each other. Who can be vulnerable with each other.</div>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- GALAXY GALLERY -->
+    <!-- IMPROVED GALLERY SECTION -->
     <section class="gallery-section">
-        <h2 class="section-title">Our Cosmic Gallery</h2>
-        <div class="gallery-container" id="gallery-container">
-            <!-- Images would be added here -->
-            <div class="gallery-item">
-                <div class="gallery-overlay">
-                    <h3 class="gallery-title">Memory #1</h3>
-                    <p class="gallery-desc">The beginning of everything</p>
-                </div>
+        <h2 class="section-title">Our Cosmic Moments</h2>
+        <div class="gallery-container">
+            <div class="gallery-track" id="gallery-track">
+                <!-- Slides will be added via JavaScript -->
             </div>
-            <div class="gallery-item">
-                <div class="gallery-overlay">
-                    <h3 class="gallery-title">Memory #2</h3>
-                    <p class="gallery-desc">When we realized this was special</p>
-                </div>
+            <div class="gallery-nav prev" id="prev-slide">
+                <span>‹</span>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-overlay">
-                    <h3 class="gallery-title">Memory #3</h3>
-                    <p class="gallery-desc">Building our own world</p>
-                </div>
+            <div class="gallery-nav next" id="next-slide">
+                <span>›</span>
             </div>
-            <div class="gallery-item">
-                <div class="gallery-overlay">
-                    <h3 class="gallery-title">Memory #4</h3>
-                    <p class="gallery-desc">The future looks bright</p>
-                </div>
-            </div>
+        </div>
+        <div class="gallery-indicators" id="gallery-indicators">
+            <!-- Indicators will be added via JavaScript -->
         </div>
     </section>
     
-    <!-- COUNTDOWN TO 2 MONTHS -->
-    <section class="countdown-section">
-        <h2 class="countdown-title">Countdown to Month 2</h2>
-        <p class="countdown-subtitle">The adventure is just beginning. Here's to the next 30 days and beyond!</p>
+    <!-- PASSWORD PROTECTED SECTION -->
+    <section class="private-section">
+        <div class="private-lock">
+            <span>🔒</span>
+        </div>
+        <h2 class="section-title">Private Memories</h2>
+        <p class="hero-subtitle">Enter our special password to unlock our most cherished moments</p>
         
-        <div class="countdown-grid">
-            <div class="countdown-item">
-                <div class="countdown-value" id="countdown-days">30</div>
-                <div class="countdown-label">Days</div>
+        <input type="password" class="private-input" id="password-input" placeholder="Enter password..." maxlength="20">
+        <button class="private-btn" id="unlock-btn">Unlock Our Memories</button>
+        <p class="private-message">Hint: It's the day our story truly began</p>
+        
+        <!-- PRIVATE GALLERY (Hidden until unlocked) -->
+        <div class="private-gallery" id="private-gallery">
+            <!-- Private photos will be loaded here -->
+        </div>
+    </section>
+    
+    <!-- LOVE LETTER SECTION -->
+    <section class="letter-section">
+        <div class="letter-container">
+            <div class="letter-content">
+                <p>There are moments with you that feel unreal — like how did I get this lucky?</p>
+                
+                <p>You are shy, you blush, you get awkward sometimes… and I swear it is the cutest thing ever. I love seeing that side of you. I love knowing I get to see sides of you that not everyone does.</p>
+                
+                <p>And baby, gentle reminder — we NEED to take more pictures together 😤 Like a LOT more. Because I want memories of us everywhere. I want proof of all these moments that make me so happy.</p>
+                
+                <p>But more than all these memories… I just want you to know this:</p>
+                
+                <p>I don't want this to be temporary. I don't want you to be just a phase in my life. I don't want to imagine a future where you are not there.</p>
+                
+                <p>You make me feel calm. You make me feel wanted. You make me feel like I can be myself — fully, honestly, without fear.</p>
+                
+                <p>I don't know what the future holds. But I know this — I want you in it. For more months. More years. More memories. More laughs. More hugs. More everything.</p>
+                
+                <p>Thank you for coming into my life. Thank you for trusting me. Thank you for being you.</p>
+                
+                <p>And if life ever gets hard… Just remember — I am here. With you. Always trying. Always choosing you.</p>
             </div>
-            <div class="countdown-item">
-                <div class="countdown-value" id="countdown-hours">0</div>
-                <div class="countdown-label">Hours</div>
+            <div class="letter-signature">With all my love, Your Person ♡</div>
+        </div>
+    </section>
+    
+    <!-- COUNTDOWN TO FOREVER -->
+    <section class="forever-section">
+        <h2 class="forever-title">Countdown to Forever</h2>
+        <p class="forever-subtitle">This is just the beginning of our endless journey together</p>
+        
+        <div class="forever-clock">
+            <div class="forever-box">
+                <div class="forever-number" id="forever-months">1</div>
+                <div class="forever-label">Months</div>
             </div>
-            <div class="countdown-item">
-                <div class="countdown-value" id="countdown-minutes">0</div>
-                <div class="countdown-label">Minutes</div>
+            <div class="forever-box">
+                <div class="forever-number" id="forever-weeks">4</div>
+                <div class="forever-label">Weeks</div>
             </div>
-            <div class="countdown-item">
-                <div class="countdown-value" id="countdown-seconds">0</div>
-                <div class="countdown-label">Seconds</div>
+            <div class="forever-box">
+                <div class="forever-number" id="forever-days">30</div>
+                <div class="forever-label">Days</div>
+            </div>
+            <div class="forever-box">
+                <div class="forever-number" id="forever-hours">720</div>
+                <div class="forever-label">Hours</div>
             </div>
         </div>
     </section>
     
     <!-- FINAL MESSAGE -->
     <section class="final-section">
-        <p class="final-message">One month might not seem like much in the grand scheme of things, but with you, every single day feels like a <span>cosmic event</span>. Here's to many more months, years, and adventures together.</p>
+        <h2 class="section-title">Happy 1 Month, My Love ♡</h2>
+        <p class="final-message">One month might not seem like much in the grand scheme of things, but with you, every single day feels like a <span>cosmic event</span> written in the stars just for us.</p>
         
-        <button class="confetti-btn" id="confetti-btn">Launch Celebration Confetti!</button>
+        <button class="love-btn" id="confetti-btn">Launch Cosmic Celebration!</button>
         
-        <div class="signature">With all my love, Your Person</div>
+        <div class="signature">Forever Yours, Your Person</div>
     </section>
     
     <!-- FOOTER -->
     <footer>
-        <p class="footer-text">Celebrating 30 days of cosmic connection with Priyanshi Kochar</p>
-        <p class="footer-text">Made with <span class="heart-pulse">❤️</span> for the girl who makes every day brighter</p>
-        <p class="footer-text">January 09, 2026 - February 09, 2026 | Our First Month</p>
+        <p class="footer-text">Celebrating 30 days of cosmic love with Priyanshi Kochar</p>
+        <p class="footer-text">Made with <span class="heart-pulse">❤️</span> for the girl who stole my heart</p>
+        <p class="footer-text">January 09, 2026 - February 09, 2026 | Our First Month Together</p>
     </footer>
+    
+    <!-- PHOTO MODAL -->
+    <div class="photo-modal" id="photo-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <img class="modal-image" id="modal-image" src="" alt="Our Memory">
+            <h2 class="modal-title" id="modal-title">Our Moment</h2>
+            <div class="modal-story" id="modal-story"></div>
+        </div>
+    </div>
     
     <script>
         // LOADING SCREEN
@@ -989,13 +1364,13 @@
             const loadingText = document.getElementById('loading-text');
             
             const loadingMessages = [
-                "Orbiting memory constellations...",
-                "Calibrating cosmic connection...",
-                "Syncing heartbeats across the galaxy...",
-                "Initializing infinite laughter protocol...",
-                "Uploading inside jokes to nebula network...",
+                "Counting stars in our universe...",
+                "Loading our cosmic connection...",
+                "Syncing heartbeats across dimensions...",
+                "Initializing infinite love protocol...",
+                "Uploading memories to nebula network...",
                 "Preparing 30-day celebration sequence...",
-                "Finalizing stardust memories...",
+                "Finalizing stardust moments...",
                 "Launching love into orbit..."
             ];
             
@@ -1006,7 +1381,6 @@
                 
                 loadingBar.style.width = progress + '%';
                 
-                // Change text every 15% progress
                 const msgIndex = Math.floor((progress / 100) * loadingMessages.length);
                 if (loadingMessages[msgIndex]) {
                     loadingText.textContent = loadingMessages[msgIndex];
@@ -1020,8 +1394,7 @@
                             duration: 1,
                             onComplete: () => {
                                 loadingScreen.style.display = 'none';
-                                // Trigger initial animations
-                                initAnimations();
+                                initEverything();
                             }
                         });
                     }, 500);
@@ -1029,101 +1402,513 @@
             }, 200);
         });
         
+        // INITIALIZE EVERYTHING
+        function initEverything() {
+            initCosmicBackground();
+            initSmoothScroll();
+            initCounters();
+            initGallery();
+            initPasswordProtection();
+            initModal();
+            initAnimations();
+        }
+        
         // COSMIC BACKGROUND CANVAS
-        const canvas = document.getElementById('cosmic-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        
-        // Create stars and particles
-        const particles = [];
-        const starCount = 150;
-        
-        for (let i = 0; i < starCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 2 + 0.5,
-                speed: Math.random() * 0.5 + 0.1,
-                color: Math.random() > 0.7 ? '#00e5ff' : (Math.random() > 0.5 ? '#1a1aff' : '#ffffff'),
-                twinkleSpeed: Math.random() * 0.05 + 0.01,
-                twinkle: Math.random() * 0.5 + 0.5
-            });
-        }
-        
-        // Create shooting stars occasionally
-        let shootingStars = [];
-        
-        function createShootingStar() {
-            if (Math.random() > 0.99 && shootingStars.length < 3) {
-                shootingStars.push({
+        function initCosmicBackground() {
+            const canvas = document.getElementById('cosmic-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            
+            const particles = [];
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                particles.push({
                     x: Math.random() * canvas.width,
-                    y: 0,
-                    speed: Math.random() * 15 + 10,
-                    length: Math.random() * 50 + 30,
-                    size: Math.random() * 3 + 1,
-                    life: 1
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2.5 + 0.5,
+                    speed: Math.random() * 0.8 + 0.1,
+                    color: Math.random() > 0.7 ? '#00e5ff' : 
+                           (Math.random() > 0.5 ? '#1a1aff' : 
+                           (Math.random() > 0.3 ? '#ff3366' : '#ffffff')),
+                    twinkleSpeed: Math.random() * 0.05 + 0.01,
+                    twinkle: Math.random() * 0.5 + 0.5
                 });
             }
+            
+            let shootingStars = [];
+            
+            function createShootingStar() {
+                if (Math.random() > 0.995 && shootingStars.length < 2) {
+                    shootingStars.push({
+                        x: Math.random() * canvas.width,
+                        y: 0,
+                        speed: Math.random() * 20 + 15,
+                        length: Math.random() * 80 + 50,
+                        size: Math.random() * 4 + 1,
+                        life: 1,
+                        color: Math.random() > 0.5 ? '#00e5ff' : '#ff3366'
+                    });
+                }
+            }
+            
+            function animateCosmicBackground() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(p => {
+                    p.twinkle += p.twinkleSpeed;
+                    const brightness = 0.5 + 0.5 * Math.sin(p.twinkle);
+                    
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * brightness, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = 0.8 * brightness;
+                    ctx.fill();
+                    
+                    p.y -= p.speed;
+                    if (p.y < 0) {
+                        p.y = canvas.height;
+                        p.x = Math.random() * canvas.width;
+                    }
+                });
+                
+                shootingStars.forEach((star, index) => {
+                    ctx.beginPath();
+                    ctx.moveTo(star.x, star.y);
+                    ctx.lineTo(star.x - star.length, star.y + star.length);
+                    ctx.lineWidth = star.size;
+                    ctx.strokeStyle = `rgba(${star.color === '#00e5ff' ? '0, 229, 255' : '255, 51, 102'}, ${star.life})`;
+                    ctx.stroke();
+                    
+                    star.x += star.speed;
+                    star.y += star.speed;
+                    star.life -= 0.015;
+                    
+                    if (star.life <= 0) {
+                        shootingStars.splice(index, 1);
+                    }
+                });
+                
+                createShootingStar();
+                requestAnimationFrame(animateCosmicBackground);
+            }
+            
+            animateCosmicBackground();
         }
         
-        function animateCosmicBackground() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // SMOOTH SCROLL
+        function initSmoothScroll() {
+            const lenis = new Lenis({
+                duration: 1.5,
+                smoothWheel: true,
+                wheelMultiplier: 1.2
+            });
             
-            // Draw particles (stars)
-            particles.forEach(p => {
-                // Twinkle effect
-                p.twinkle += p.twinkleSpeed;
-                const brightness = 0.5 + 0.5 * Math.sin(p.twinkle);
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        }
+        
+        // REAL-TIME COUNTERS
+        function initCounters() {
+            const startDate = new Date('2026-01-09T00:00:00');
+            
+            function updateCounters() {
+                const now = new Date();
+                const diff = now - startDate;
                 
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size * brightness, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = 0.7 * brightness;
-                ctx.fill();
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
                 
-                // Move stars slowly
-                p.y -= p.speed;
-                if (p.y < 0) {
-                    p.y = canvas.height;
-                    p.x = Math.random() * canvas.width;
+                document.getElementById('days-counter').textContent = days;
+                document.getElementById('hours-counter').textContent = (days * 24) + hours;
+                document.getElementById('minutes-counter').textContent = (days * 24 * 60) + (hours * 60) + minutes;
+                document.getElementById('seconds-counter').textContent = (days * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60) + seconds;
+                
+                const weeks = Math.floor(days / 7);
+                const remainingDays = days % 7;
+                const totalHours = (days * 24) + hours;
+                
+                document.getElementById('forever-months').textContent = Math.floor(days / 30);
+                document.getElementById('forever-weeks').textContent = weeks;
+                document.getElementById('forever-days').textContent = days;
+                document.getElementById('forever-hours').textContent = totalHours;
+            }
+            
+            setInterval(updateCounters, 1000);
+            updateCounters();
+        }
+        
+        // IMPROVED GALLERY
+        function initGallery() {
+            const galleryTrack = document.getElementById('gallery-track');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
+            const indicatorsContainer = document.getElementById('gallery-indicators');
+            
+            const images = [
+                {
+                    url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                    title: 'Our Beginning',
+                    desc: 'The start of something beautiful'
+                },
+                {
+                    url: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                    title: 'Cosmic Connection',
+                    desc: 'When our stars aligned'
+                },
+                {
+                    url: 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                    title: 'Starlight Moments',
+                    desc: 'Every moment shines brighter with you'
+                },
+                {
+                    url: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                    title: 'Galaxy of Love',
+                    desc: 'Exploring the universe together'
+                },
+                {
+                    url: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                    title: 'Nebula Dreams',
+                    desc: 'Dreaming of our future together'
+                }
+            ];
+            
+            let currentSlide = 0;
+            
+            images.forEach((image, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'gallery-slide';
+                slide.innerHTML = `
+                    <img src="${image.url}" alt="${image.title}" class="gallery-image">
+                    <div class="photo-overlay">
+                        <div class="photo-date">Memory ${index + 1}</div>
+                        <h3 class="gallery-title">${image.title}</h3>
+                        <p class="gallery-desc">${image.desc}</p>
+                    </div>
+                `;
+                galleryTrack.appendChild(slide);
+                
+                const indicator = document.createElement('div');
+                indicator.className = 'gallery-indicator';
+                if (index === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            function updateGallery() {
+                const slideWidth = document.querySelector('.gallery-slide').offsetWidth;
+                galleryTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+                
+                document.querySelectorAll('.gallery-indicator').forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            function goToSlide(index) {
+                currentSlide = index;
+                if (currentSlide < 0) currentSlide = images.length - 1;
+                if (currentSlide >= images.length) currentSlide = 0;
+                updateGallery();
+            }
+            
+            function nextSlide() {
+                currentSlide++;
+                if (currentSlide >= images.length) currentSlide = 0;
+                updateGallery();
+            }
+            
+            function prevSlide() {
+                currentSlide--;
+                if (currentSlide < 0) currentSlide = images.length - 1;
+                updateGallery();
+            }
+            
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            
+            // Auto slide every 5 seconds
+            setInterval(nextSlide, 5000);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'ArrowRight') nextSlide();
+            });
+            
+            // Swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            galleryTrack.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            galleryTrack.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextSlide(); // Swipe left
+                    } else {
+                        prevSlide(); // Swipe right
+                    }
+                }
+            }
+            
+            updateGallery();
+        }
+        
+        // PASSWORD PROTECTION
+        function initPasswordProtection() {
+            const unlockBtn = document.getElementById('unlock-btn');
+            const passwordInput = document.getElementById('password-input');
+            const privateGallery = document.getElementById('private-gallery');
+            
+            // Correct password - using your anniversary date
+            const correctPassword = '09012026'; // DDMMYYYY format
+            
+            unlockBtn.addEventListener('click', function() {
+                const enteredPassword = passwordInput.value.trim();
+                
+                if (enteredPassword === correctPassword || enteredPassword.toLowerCase() === '0901' || enteredPassword.toLowerCase() === 'jan9') {
+                    // Correct password
+                    gsap.to(passwordInput, {
+                        borderColor: '#00ff88',
+                        boxShadow: '0 0 20px rgba(0, 255, 136, 0.5)',
+                        duration: 0.3
+                    });
+                    
+                    gsap.to(unlockBtn, {
+                        backgroundColor: '#00ff88',
+                        color: '#000',
+                        duration: 0.3,
+                        onComplete: () => {
+                            unlockBtn.textContent = 'Unlocked! 🎉';
+                            showPrivateGallery();
+                        }
+                    });
+                    
+                    // Launch celebration
+                    setTimeout(() => {
+                        confetti({
+                            particleCount: 150,
+                            spread: 70,
+                            origin: { y: 0.6 },
+                            colors: ['#ff3366', '#ff4fd8', '#9d4edd', '#00e5ff']
+                        });
+                    }, 500);
+                } else {
+                    // Wrong password
+                    gsap.to(passwordInput, {
+                        borderColor: '#ff3366',
+                        boxShadow: '0 0 20px rgba(255, 51, 102, 0.5)',
+                        duration: 0.3,
+                        yoyo: true,
+                        repeat: 3
+                    });
+                    
+                    gsap.to(unlockBtn, {
+                        backgroundColor: '#ff3366',
+                        duration: 0.3,
+                        yoyo: true,
+                        repeat: 2
+                    });
+                    
+                    passwordInput.value = '';
+                    passwordInput.placeholder = 'Try again... hint: 0901';
                 }
             });
             
-            // Draw shooting stars
-            shootingStars.forEach((star, index) => {
-                ctx.beginPath();
-                ctx.moveTo(star.x, star.y);
-                ctx.lineTo(star.x - star.length, star.y + star.length);
-                ctx.lineWidth = star.size;
-                ctx.strokeStyle = `rgba(0, 229, 255, ${star.life})`;
-                ctx.stroke();
+            function showPrivateGallery() {
+                // Private photos data
+                const privatePhotos = [
+                    { date: "Jan 6, 2026", title: "First Meeting", desc: "The day our eyes met for the first time" },
+                    { date: "Jan 9, 2026", title: "Our First Kiss", desc: "A moment I'll remember forever" },
+                    { date: "Jan 15, 2026", title: "Late Night Talks", desc: "When we realized this was special" },
+                    { date: "Jan 22, 2026", title: "Our First Date", desc: "Every moment felt magical" },
+                    { date: "Jan 30, 2026", title: "Building Memories", desc: "Creating our own little world" },
+                    { date: "Feb 5, 2026", title: "Growing Closer", desc: "Every day feels better than the last" }
+                ];
                 
-                star.x += star.speed;
-                star.y += star.speed;
-                star.life -= 0.02;
+                // Create photo elements
+                privatePhotos.forEach(photo => {
+                    const photoElement = document.createElement('div');
+                    photoElement.className = 'private-photo';
+                    photoElement.innerHTML = `
+                        <img src="https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="${photo.title}">
+                        <div class="photo-overlay">
+                            <div class="photo-date">${photo.date}</div>
+                            <h3>${photo.title}</h3>
+                            <p>${photo.desc}</p>
+                        </div>
+                    `;
+                    
+                    photoElement.addEventListener('click', () => openPhotoModal(photo));
+                    privateGallery.appendChild(photoElement);
+                });
                 
-                if (star.life <= 0) {
-                    shootingStars.splice(index, 1);
+                privateGallery.style.display = 'grid';
+                
+                gsap.from('.private-photo', {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    stagger: 0.1,
+                    ease: "power3.out"
+                });
+            }
+            
+            // Allow Enter key to submit password
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    unlockBtn.click();
+                }
+            });
+        }
+        
+        // PHOTO MODAL
+        function initModal() {
+            const modal = document.getElementById('photo-modal');
+            const modalClose = document.getElementById('modal-close');
+            const modalImage = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalStory = document.getElementById('modal-story');
+            
+            function openPhotoModal(photo) {
+                modalImage.src = `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80`;
+                modalTitle.textContent = photo.title;
+                modalStory.textContent = photo.desc + " - This is one of our precious moments that I'll cherish forever. Every memory with you feels like a dream come true.";
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                gsap.fromTo('.modal-content',
+                    { scale: 0.8, opacity: 0 },
+                    { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.2)" }
+                );
+            }
+            
+            modalClose.addEventListener('click', () => {
+                gsap.to('.modal-content', {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.3,
+                    onComplete: () => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modalClose.click();
                 }
             });
             
-            createShootingStar();
-            
-            requestAnimationFrame(animateCosmicBackground);
+            window.openPhotoModal = openPhotoModal;
         }
         
-        animateCosmicBackground();
+        // CONFETTI BUTTON
+        document.getElementById('confetti-btn').addEventListener('click', function() {
+            // Major confetti explosion
+            confetti({
+                particleCount: 400,
+                spread: 120,
+                origin: { y: 0.6 },
+                colors: ['#ff3366', '#ff4fd8', '#9d4edd', '#1a1aff', '#00e5ff', '#ffffff']
+            });
+            
+            setTimeout(() => {
+                confetti({
+                    particleCount: 200,
+                    angle: 60,
+                    spread: 100,
+                    origin: { x: 0 },
+                    colors: ['#ff3366', '#ff4fd8', '#9d4edd']
+                });
+            }, 250);
+            
+            setTimeout(() => {
+                confetti({
+                    particleCount: 200,
+                    angle: 120,
+                    spread: 100,
+                    origin: { x: 1 },
+                    colors: ['#1a1aff', '#00e5ff', '#9d4edd']
+                });
+            }, 500);
+            
+            // Button animation
+            gsap.to(this, {
+                scale: 1.15,
+                duration: 0.2,
+                yoyo: true,
+                repeat: 2
+            });
+            
+            // Screen celebration
+            gsap.to('body', {
+                x: 15,
+                y: 15,
+                duration: 0.1,
+                repeat: 5,
+                yoyo: true
+            });
+            
+            // Floating hearts
+            for (let i = 0; i < 20; i++) {
+                createFloatingHeart();
+            }
+        });
+        
+        // FLOATING HEARTS
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = ['❤️', '💖', '💕', '💙', '💜'][Math.floor(Math.random() * 5)];
+            heart.style.position = 'fixed';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.top = `100vh`;
+            heart.style.fontSize = `${Math.random() * 40 + 20}px`;
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9998';
+            heart.style.opacity = '0.9';
+            document.body.appendChild(heart);
+            
+            gsap.to(heart, {
+                y: -Math.random() * 300 - 200,
+                x: (Math.random() - 0.5) * 200,
+                rotation: Math.random() * 360,
+                opacity: 0,
+                duration: Math.random() * 3 + 2,
+                ease: "power2.out",
+                onComplete: () => heart.remove()
+            });
+        }
         
         // INITIAL ANIMATIONS
         function initAnimations() {
-            // Animate hero elements
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate hero
             gsap.from('.hero-title', {
                 duration: 1.5,
                 y: 50,
@@ -1156,217 +1941,68 @@
                 ease: "power3.out"
             });
             
-            // Animate meter bar
-            setTimeout(() => {
-                gsap.to('#meter-bar', {
-                    duration: 3,
-                    scaleX: 1,
-                    ease: "power2.inOut",
-                    onComplete: () => {
-                        // Make percentage count up
-                        let percentage = 0;
-                        const targetPercentage = 99.9;
-                        const percentageElement = document.getElementById('meter-percentage');
-                        
-                        const interval = setInterval(() => {
-                            percentage += 1;
-                            percentageElement.textContent = percentage.toFixed(1) + '%';
-                            
-                            if (percentage >= targetPercentage) {
-                                clearInterval(interval);
-                                percentageElement.textContent = targetPercentage.toFixed(1) + '%';
-                            }
-                        }, 30);
-                    }
-                });
-            }, 2000);
-            
-            // Add scroll animations
-            gsap.utils.toArray('.milestone-card, .message-card').forEach((card, i) => {
-                gsap.from(card, {
+            // Timeline animations
+            gsap.utils.toArray('.timeline-content').forEach((content, i) => {
+                gsap.from(content, {
                     scrollTrigger: {
-                        trigger: card,
-                        start: "top 80%",
-                        end: "top 50%",
+                        trigger: content,
+                        start: "top 85%",
                         toggleActions: "play none none none"
                     },
+                    duration: 1,
                     y: 50,
                     opacity: 0,
-                    duration: 1,
-                    delay: i * 0.1
+                    delay: i * 0.1,
+                    ease: "power3.out"
+                });
+            });
+            
+            // Letter animation
+            gsap.from('.letter-container', {
+                scrollTrigger: {
+                    trigger: '.letter-section',
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.5,
+                y: 100,
+                opacity: 0,
+                ease: "power3.out"
+            });
+            
+            // Forever section animation
+            gsap.from('.forever-box', {
+                scrollTrigger: {
+                    trigger: '.forever-section',
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                },
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                stagger: 0.1,
+                ease: "power3.out"
+            });
+            
+            // Add scroll-triggered glow to section titles
+            gsap.utils.toArray('.section-title, .forever-title').forEach(title => {
+                gsap.from(title, {
+                    scrollTrigger: {
+                        trigger: title,
+                        start: "top 90%",
+                        toggleActions: "play none none none"
+                    },
+                    duration: 1.5,
+                    y: 30,
+                    opacity: 0,
+                    ease: "power3.out"
                 });
             });
         }
         
-        // REAL-TIME COUNTERS
-        function updateCounters() {
-            // Anniversary date: January 9, 2026
-            const startDate = new Date('2026-01-09T00:00:00');
-            const now = new Date();
-            const diff = now - startDate;
-            
-            // Calculate days, hours, minutes, seconds
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            // Update counters
-            document.getElementById('days-counter').textContent = days;
-            document.getElementById('hours-counter').textContent = (days * 24) + hours;
-            document.getElementById('minutes-counter').textContent = (days * 24 * 60) + (hours * 60) + minutes;
-            document.getElementById('seconds-counter').textContent = (days * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60) + seconds;
-            
-            // Update countdown to 2 months
-            const nextMonthDate = new Date(startDate);
-            nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
-            const countdownDiff = nextMonthDate - now;
-            
-            const countdownDays = Math.floor(countdownDiff / (1000 * 60 * 60 * 24));
-            const countdownHours = Math.floor((countdownDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const countdownMinutes = Math.floor((countdownDiff % (1000 * 60 * 60)) / (1000 * 60));
-            const countdownSeconds = Math.floor((countdownDiff % (1000 * 60)) / 1000);
-            
-            document.getElementById('countdown-days').textContent = countdownDays;
-            document.getElementById('countdown-hours').textContent = countdownHours.toString().padStart(2, '0');
-            document.getElementById('countdown-minutes').textContent = countdownMinutes.toString().padStart(2, '0');
-            document.getElementById('countdown-seconds').textContent = countdownSeconds.toString().padStart(2, '0');
-        }
-        
-        // Update counters every second
-        setInterval(updateCounters, 1000);
-        updateCounters(); // Initial call
-        
-        // CONFETTI BUTTON
-        document.getElementById('confetti-btn').addEventListener('click', function() {
-            // Create confetti explosion
-            confetti({
-                particleCount: 300,
-                spread: 100,
-                origin: { y: 0.6 },
-                colors: ['#1a1aff', '#00e5ff', '#9d4edd', '#ff4fd8', '#ffffff']
-            });
-            
-            // Add additional effects
-            setTimeout(() => {
-                confetti({
-                    particleCount: 150,
-                    angle: 60,
-                    spread: 80,
-                    origin: { x: 0 },
-                    colors: ['#1a1aff', '#00e5ff', '#9d4edd']
-                });
-            }, 250);
-            
-            setTimeout(() => {
-                confetti({
-                    particleCount: 150,
-                    angle: 120,
-                    spread: 80,
-                    origin: { x: 1 },
-                    colors: ['#ff4fd8', '#9d4edd', '#1a1aff']
-                });
-            }, 500);
-            
-            // Add button animation
-            gsap.to(this, {
-                scale: 1.1,
-                duration: 0.2,
-                yoyo: true,
-                repeat: 1
-            });
-            
-            // Add screen shake for fun
-            gsap.to('body', {
-                x: 10,
-                y: 10,
-                duration: 0.1,
-                repeat: 5,
-                yoyo: true
-            });
-        });
-        
-        // GALLERY INTERACTIVITY
-        const galleryContainer = document.getElementById('gallery-container');
-        
-        // Add some placeholder images (in a real site, you'd replace these with actual images)
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const imageUrls = [
-            'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80',
-            'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-        ];
-        
-        galleryItems.forEach((item, index) => {
-            if (imageUrls[index]) {
-                const img = document.createElement('img');
-                img.src = imageUrls[index];
-                img.className = 'gallery-image';
-                img.alt = `Memory ${index + 1}`;
-                item.prepend(img);
-            }
-        });
-        
-        // Add horizontal scroll with mouse wheel
-        galleryContainer.addEventListener('wheel', (e) => {
-            if (e.deltaY > 0) {
-                galleryContainer.scrollLeft += 50;
-            } else {
-                galleryContainer.scrollLeft -= 50;
-            }
-            e.preventDefault();
-        });
-        
-        // Add click and drag functionality
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-        
-        galleryContainer.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - galleryContainer.offsetLeft;
-            scrollLeft = galleryContainer.scrollLeft;
-        });
-        
-        galleryContainer.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-        
-        galleryContainer.addEventListener('mouseup', () => {
-            isDown = false;
-        });
-        
-        galleryContainer.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - galleryContainer.offsetLeft;
-            const walk = (x - startX) * 2;
-            galleryContainer.scrollLeft = scrollLeft - walk;
-        });
-        
-        // Add touch support for mobile
-        galleryContainer.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - galleryContainer.offsetLeft;
-            scrollLeft = galleryContainer.scrollLeft;
-        });
-        
-        galleryContainer.addEventListener('touchend', () => {
-            isDown = false;
-        });
-        
-        galleryContainer.addEventListener('touchmove', (e) => {
-            if (!isDown) return;
-            const x = e.touches[0].pageX - galleryContainer.offsetLeft;
-            const walk = (x - startX) * 2;
-            galleryContainer.scrollLeft = scrollLeft - walk;
-        });
-        
-        // Add random floating hearts on click
+        // FLOATING HEARTS ON CLICK ANYWHERE
         document.addEventListener('click', (e) => {
-            // Don't trigger on confetti button
-            if (e.target.id === 'confetti-btn') return;
+            if (e.target.id === 'confetti-btn' || e.target.id === 'unlock-btn') return;
             
             for (let i = 0; i < 3; i++) {
                 const heart = document.createElement('div');
@@ -1376,7 +2012,7 @@
                 heart.style.top = `${e.clientY + (Math.random() - 0.5) * 100}px`;
                 heart.style.fontSize = `${Math.random() * 30 + 20}px`;
                 heart.style.pointerEvents = 'none';
-                heart.style.zIndex = '9999';
+                heart.style.zIndex = '9998';
                 heart.style.opacity = '0.8';
                 document.body.appendChild(heart);
                 
@@ -1389,32 +2025,6 @@
                     ease: "power2.out",
                     onComplete: () => heart.remove()
                 });
-            }
-        });
-        
-        // Add scroll-triggered animations
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.utils.toArray('.section-title').forEach(title => {
-            gsap.from(title, {
-                scrollTrigger: {
-                    trigger: title,
-                    start: "top 90%",
-                    toggleActions: "play none none none"
-                },
-                duration: 1.5,
-                y: 50,
-                opacity: 0,
-                ease: "power3.out"
-            });
-        });
-        
-        // Add parallax effect to cosmic background
-        gsap.to(particles, {
-            y: 100,
-            ease: "none",
-            scrollTrigger: {
-                scrub: 1
             }
         });
     </script>
