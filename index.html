@@ -6,7 +6,7 @@
     <title>Cosmic Love: 1 Month with Priyanshi</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -61,15 +61,6 @@
             min-height: 100vh;
         }
         
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-        
-        .script {
-            font-family: 'Dancing Script', cursive;
-        }
-        
         /* SMOOTH SCROLL */
         html.lenis {
             height: auto;
@@ -103,15 +94,6 @@
             color: transparent;
             text-align: center;
             font-family: 'Playfair Display', serif;
-        }
-        
-        .loading-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            text-align: center;
-            max-width: 500px;
-            line-height: 1.5;
         }
         
         .loading-number {
@@ -289,7 +271,7 @@
             color: var(--text-dim);
         }
         
-        /* HYBRID TIMELINE - BEST OF BOTH */
+        /* FIXED TIMELINE - PROPER VERTICAL TIMELINE */
         .timeline-section {
             padding: 150px 5%;
             max-width: 1200px;
@@ -307,13 +289,47 @@
             color: transparent;
         }
         
-        /* SIMPLE TIMELINE ITEMS (From first design) BUT ENHANCED */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-love);
+            z-index: 1;
+        }
+        
         .timeline-item {
-            margin: 60px 0;
-            padding: 40px;
+            display: flex;
+            margin: 80px 0;
+            position: relative;
+            width: 100%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+            padding-right: calc(50% + 30px);
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+            padding-left: calc(50% + 30px);
+        }
+        
+        .timeline-content {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 25px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
             backdrop-filter: blur(20px);
             box-shadow: var(--glass-shadow);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -321,7 +337,7 @@
             overflow: hidden;
         }
         
-        .timeline-item::before {
+        .timeline-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -334,37 +350,47 @@
             transition: transform 0.5s ease;
         }
         
-        .timeline-item:hover {
-            transform: translateY(-15px) scale(1.02);
+        .timeline-content:hover {
+            transform: translateY(-10px);
             box-shadow: 
                 0 30px 70px rgba(0, 0, 0, 0.7),
                 var(--neon-pink);
         }
         
-        .timeline-item:hover::before {
+        .timeline-content:hover::before {
             transform: scaleX(1);
         }
         
         .timeline-date {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             background: var(--gradient-love);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: inline-block;
-            font-family: 'Playfair Display', serif;
         }
         
         .timeline-text {
-            font-size: 1.3rem;
-            line-height: 1.8;
+            font-size: 1.2rem;
+            line-height: 1.7;
             color: var(--text-secondary);
-            font-family: 'Poppins', sans-serif;
         }
         
-        /* GALLERY - HYBRID SCROLLABLE WITH BUTTONS */
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--gradient-love);
+            box-shadow: var(--neon-pink);
+            z-index: 2;
+        }
+        
+        /* GALLERY - BUTTON SCROLLABLE (ENHANCED) */
         .gallery-section {
             padding: 150px 5% 100px;
             position: relative;
@@ -953,6 +979,24 @@
             border-radius: 6px;
         }
         
+        /* RESPONSIVE TIMELINE */
+        @media (max-width: 992px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 20px;
+                justify-content: flex-start;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+        
         /* RESPONSIVE */
         @media (max-width: 992px) {
             .hero-title {
@@ -1094,7 +1138,7 @@
                 font-size: 2.2rem;
             }
             
-            .timeline-item {
+            .timeline-content {
                 padding: 30px 20px;
             }
             
@@ -1134,7 +1178,6 @@
     <!-- LOADING SCREEN WITH NUMBERING -->
     <div class="loading-screen" id="loading-screen">
         <h1 class="loading-title">Cosmic Love Story</h1>
-        <p class="loading-subtitle">Loading our 1-month journey with Priyanshi</p>
         <div class="loading-number" id="loading-number">0/27</div>
         <div class="loading-bar-container">
             <div class="loading-bar" id="loading-bar"></div>
@@ -1174,33 +1217,52 @@
         </div>
     </section>
     
-    <!-- TIMELINE -->
+    <!-- FIXED TIMELINE SECTION -->
     <section class="timeline-section">
         <h2 class="section-title">Our Cosmic Timeline</h2>
-        
-        <div class="timeline-item">
-            <div class="timeline-date">January 4th</div>
-            <div class="timeline-text">The day I first became aware that you existed. I didn't know then that you would slowly become someone so important to me.</div>
-        </div>
-        
-        <div class="timeline-item">
-            <div class="timeline-date">January 6th - VR Mall</div>
-            <div class="timeline-text">The day I first saw you in real life. You looked so shy, so innocent, so cute… like this soft, pure soul standing in front of me.</div>
-        </div>
-        
-        <div class="timeline-item">
-            <div class="timeline-date">That First Meet</div>
-            <div class="timeline-text">You called and asked, "Are you in H&M?" I went there… and you weren't there. Then I texted you, and you were like, "Main toh bahar aa gayi." And I was like, brooo 😭</div>
-        </div>
-        
-        <div class="timeline-item">
-            <div class="timeline-date">January 9th - Our First Kiss</div>
-            <div class="timeline-text">I was nervous. Excited. Happy. Everything at once. That day made me realize how close we were getting.</div>
-        </div>
-        
-        <div class="timeline-item">
-            <div class="timeline-date">Becoming "Us"</div>
-            <div class="timeline-text">And slowly… we didn't just become two people meeting. We became <em>us.</em> Two people who trust each other.</div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">January 4th</div>
+                    <div class="timeline-text">The day I first became aware that you existed. I didn't know then that you would slowly become someone so important to me, someone I would think about every single day.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">January 6th - VR Mall</div>
+                    <div class="timeline-text">The day I first saw you in real life. You looked so shy, so innocent, so cute… like this soft, pure soul standing in front of me. And I swear, the moment I saw you, something inside me just said — <em>there's something special about her.</em></div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">That First Meet</div>
+                    <div class="timeline-text">You called and asked, "Are you in H&M?" I went there… and you weren't there. Then I texted you, and you were like, "Main toh bahar aa gayi." And I was like, brooo 😭 Then I came outside… and that was it. That was the moment. Crazy how something so small turned into something so big for me.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">The Comfort</div>
+                    <div class="timeline-text">What I still can't believe is how comfortable I felt with you on the first meet itself. Like… crazy wala crazy. Like I already knew you. Like I could already be myself around you.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">January 9th - Our First Kiss</div>
+                    <div class="timeline-text">I was nervous. Excited. Happy. Everything at once. That day made me realize how close we were getting, how natural everything felt with you.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Becoming "Us"</div>
+                    <div class="timeline-text">And slowly… we didn't just become two people meeting. We became <em>us.</em> Two people who trust each other. Who feel safe with each other. Who can be vulnerable with each other.</div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -1239,14 +1301,21 @@
     
     <!-- LOVE LETTER -->
     <section class="letter-section">
-        <h2 class="section-title">My Love Letter</h2>
         <div class="letter-container">
             <div class="letter-content">
                 <p>There are moments with you that feel unreal — like how did I get this lucky?</p>
                 
-                <p>You are shy, you blush, you get awkward sometimes… and I swear it is the cutest thing ever.</p>
+                <p>You are shy, you blush, you get awkward sometimes… and I swear it is the cutest thing ever. I love seeing that side of you. I love knowing I get to see sides of you that not everyone does.</p>
+                
+                <p>And baby, gentle reminder — we NEED to take more pictures together 😤 Like a LOT more. Because I want memories of us everywhere. I want proof of all these moments that make me so happy.</p>
+                
+                <p>But more than all these memories… I just want you to know this:</p>
                 
                 <p>I don't want this to be temporary. I don't want you to be just a phase in my life. I don't want to imagine a future where you are not there.</p>
+                
+                <p>You make me feel calm. You make me feel wanted. You make me feel like I can be myself — fully, honestly, without fear.</p>
+                
+                <p>I don't know what the future holds. But I know this — I want you in it. For more months. More years. More memories. More laughs. More hugs. More everything.</p>
                 
                 <p>Thank you for coming into my life. Thank you for trusting me. Thank you for being you.</p>
                 
@@ -1276,26 +1345,26 @@
             </div>
             <div class="forever-box">
                 <div class="forever-number" id="forever-hours">720</div>
-                <div class="counter-label">Hours</div>
+                <div class="forever-label">Hours</div>
             </div>
         </div>
     </section>
     
     <!-- FINAL SECTION -->
     <section class="final-section">
-        <h2 class="section-title">Happy 1 Month ♡</h2>
-        <p class="final-message">One month might not seem like much, but with you, every single day feels like a <span>cosmic event</span> written in the stars just for us.</p>
+        <h2 class="section-title">Happy 1 Month, My Love ♡</h2>
+        <p class="final-message">One month might not seem like much in the grand scheme of things, but with you, every single day feels like a <span>cosmic event</span> written in the stars just for us.</p>
         
         <button class="love-btn" id="confetti-btn">Launch Cosmic Celebration!</button>
         
-        <div class="signature">Forever Yours</div>
+        <div class="signature">Forever Yours, Your Person</div>
     </section>
     
     <!-- FOOTER -->
     <footer>
         <p class="footer-text">Celebrating 30 days of cosmic love with Priyanshi Kochar</p>
         <p class="footer-text">Made with <span class="heart-pulse">❤️</span> for the girl who stole my heart</p>
-        <p class="footer-text">January 09, 2026 - February 09, 2026</p>
+        <p class="footer-text">January 09, 2026 - February 09, 2026 | Our First Month Together</p>
     </footer>
     
     <!-- MODAL -->
@@ -1579,7 +1648,8 @@
                     confetti({
                         particleCount: 100,
                         spread: 70,
-                        origin: { y: 0.6 }
+                        origin: { y: 0.6 },
+                        colors: ['#ff3366', '#ff4fd8', '#9d4edd', '#00e5ff']
                     });
                 } else {
                     // Wrong password
@@ -1731,10 +1801,10 @@
             });
             
             // Timeline animations
-            gsap.utils.toArray('.timeline-item').forEach((item, i) => {
-                gsap.from(item, {
+            gsap.utils.toArray('.timeline-content').forEach((content, i) => {
+                gsap.from(content, {
                     scrollTrigger: {
-                        trigger: item,
+                        trigger: content,
                         start: "top 85%",
                         toggleActions: "play none none none"
                     },
@@ -1819,6 +1889,15 @@
                 for (let i = 0; i < 20; i++) {
                     createFloatingHeart();
                 }
+                
+                // Screen shake effect
+                gsap.to('body', {
+                    x: 10,
+                    y: 10,
+                    duration: 0.1,
+                    repeat: 5,
+                    yoyo: true
+                });
             });
         }
         
