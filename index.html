@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Convergence: 1 Month with Priyanshi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --cosmic-black: #050510;
+            --deep-space: #0a0a1a;
+            --nebula-blue: #1a1aff;
+            --starlight-cyan: #00e5ff;
+            --galaxy-purple: #9d4edd;
+            --nova-pink: #ff4fd8;
+            
+            --gradient-primary: linear-gradient(135deg, #1a1aff 0%, #00e5ff 50%, #9d4edd 100%);
+            --gradient-secondary: linear-gradient(135deg, #ff4fd8 0%, #9d4edd 50%, #1a1aff 100%);
+            
+            --glass-bg: rgba(10, 10, 26, 0.7);
+            --glass-border: rgba(26, 26, 255, 0.3);
+            --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            
+            --neon-blue: 0 0 25px rgba(26, 26, 255, 0.7);
+            --neon-cyan: 0 0 30px rgba(0, 229, 255, 0.5);
+            
+            --text-primary: #ffffff;
+            --text-secondary: #b8c1ec;
+            --text-dim: #6c72a0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(26, 26, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                var(--deep-space);
+            color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+        
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        /* LOADING SCREEN */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cosmic-black);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .loading-title {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+        
+        .loading-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 500px;
+            line-height: 1.5;
+        }
+        
+        .loading-bar-container {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .loading-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .loading-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* COSMIC BACKGROUND */
+        #cosmic-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5%;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .hero-title span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 700px;
+            line-height: 1.6;
+        }
+        
+        .anniversary-date {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--glass-shadow);
+        }
+        
+        /* COSMIC COUNTER */
+        .cosmic-counter {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .counter-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px 20px;
+            min-width: 140px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .counter-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .counter-box:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--neon-blue);
+        }
+        
+        .counter-box:hover::before {
+            opacity: 0.1;
+        }
+        
+        .counter-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .counter-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-dim);
+        }
+        
+        /* MILESTONE CARDS */
+        .milestones-section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 80px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .milestones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .milestone-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .milestone-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .milestone-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                var(--neon-blue);
+        }
+        
+        .milestone-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .milestone-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .milestone-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .milestone-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* LOVE METER */
+        .love-meter-section {
+            padding: 100px 5%;
+            text-align: center;
+        }
+        
+        .love-meter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 50px 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .love-meter-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .meter-bar-container {
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            position: relative;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .meter-bar {
+            height: 100%;
+            width: 100%;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            position: relative;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 2s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .meter-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .meter-percentage {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .meter-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-top: 20px;
+        }
+        
+        /* MESSAGE GRID */
+        .messages-section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .messages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .message-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                var(--neon-cyan);
+        }
+        
+        .message-card:nth-child(2n):hover {
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                var(--neon-blue);
+        }
+        
+        .message-content {
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .message-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(26, 26, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: var(--starlight-cyan);
+        }
+        
+        /* GALAXY GALLERY */
+        .gallery-section {
+            padding: 100px 5%;
+            position: relative;
+        }
+        
+        .gallery-container {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 40px 0;
+            gap: 40px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .gallery-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 400px;
+            height: 500px;
+            scroll-snap-align: center;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(5, 5, 16, 0.9), transparent);
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .gallery-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .gallery-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        /* COUNTDOWN TO 2 MONTHS */
+        .countdown-section {
+            padding: 100px 5%;
+            text-align: center;
+            background: 
+                radial-gradient(circle at center, rgba(26, 26, 255, 0.1) 0%, transparent 70%);
+            border-radius: 40px;
+            margin: 100px 5%;
+        }
+        
+        .countdown-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .countdown-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px 20px;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--glass-shadow);
+        }
+        
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+        }
+        
+        /* FINAL MESSAGE */
+        .final-section {
+            padding: 150px 5%;
+            text-align: center;
+            position: relative;
+        }
+        
+        .final-message {
+            font-size: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            line-height: 1.5;
+            color: var(--text-primary);
+        }
+        
+        .final-message span {
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .signature {
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            margin-top: 60px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .confetti-btn {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 18px 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 50px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(26, 26, 255, 0.3);
+        }
+        
+        .confetti-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(26, 26, 255, 0.5),
+                var(--neon-blue);
+        }
+        
+        /* FOOTER */
+        footer {
+            padding: 80px 5% 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+        }
+        
+        .footer-text {
+            font-size: 1rem;
+            color: var(--text-dim);
+            margin-top: 20px;
+        }
+        
+        .heart-pulse {
+            display: inline-block;
+            animation: pulse 2s infinite;
+            color: #ff4fd8;
+            font-size: 1.5rem;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 10, 26, 0.8);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 5px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 5rem);
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .milestones-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .gallery-item {
+                width: 300px;
+                height: 400px;
+            }
+            
+            .counter-box {
+                min-width: 120px;
+                padding: 25px 15px;
+            }
+            
+            .counter-number {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 100px;
+            }
+            
+            .cosmic-counter {
+                gap: 15px;
+            }
+            
+            .counter-box {
+                min-width: 100px;
+                padding: 20px 10px;
+            }
+            
+            .counter-number {
+                font-size: 2.5rem;
+            }
+            
+            .messages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .final-message {
+                font-size: 2rem;
+            }
+            
+            .signature {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .loading-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 20px 10px;
+            }
+            
+            .countdown-value {
+                font-size: 2.2rem;
+            }
+            
+            .confetti-btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOADING SCREEN -->
+    <div class="loading-screen" id="loading-screen">
+        <h1 class="loading-title">Cosmic Connection</h1>
+        <p class="loading-subtitle">Initializing 1-month anniversary celebration for Priyanshi & Her Person</p>
+        <div class="loading-bar-container">
+            <div class="loading-bar" id="loading-bar"></div>
+        </div>
+        <div class="loading-text" id="loading-text">Loading stardust memories...</div>
+    </div>
+    
+    <!-- COSMIC BACKGROUND CANVAS -->
+    <canvas id="cosmic-canvas"></canvas>
+    
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1 class="hero-title">One <span>Cosmic</span> Month</h1>
+        <p class="hero-subtitle">Celebrating 30 days of laughter, conversations, and a connection that feels like it's written in the stars with the amazing Priyanshi Kochar.</p>
+        
+        <div class="anniversary-date">
+            JAN 09, 2026 → FEB 09, 2026
+        </div>
+        
+        <div class="cosmic-counter">
+            <div class="counter-box">
+                <div class="counter-number" id="days-counter">30</div>
+                <div class="counter-label">Days</div>
+            </div>
+            <div class="counter-box">
+                <div class="counter-number" id="hours-counter">720</div>
+                <div class="counter-label">Hours</div>
+            </div>
+            <div class="counter-box">
+                <div class="counter-number" id="minutes-counter">43,200</div>
+                <div class="counter-label">Minutes</div>
+            </div>
+            <div class="counter-box">
+                <div class="counter-number" id="seconds-counter">2,592,000</div>
+                <div class="counter-label">Seconds</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- MILESTONES SECTION -->
+    <section class="milestones-section">
+        <h2 class="section-title">Memory Constellations</h2>
+        <div class="milestones-grid">
+            <div class="milestone-card">
+                <div class="milestone-icon">✨</div>
+                <h3 class="milestone-title">The First Message</h3>
+                <p class="milestone-desc">That first "hey" that started it all. Who knew two words could lead to something this incredible?</p>
+            </div>
+            <div class="milestone-card">
+                <div class="milestone-icon">💫</div>
+                <h3 class="milestone-title">First Late Night Talk</h3>
+                <p class="milestone-desc">Staying up until 3 AM because neither of us wanted to stop talking. That's when I knew this was special.</p>
+            </div>
+            <div class="milestone-card">
+                <div class="milestone-icon">🌌</div>
+                <h3 class="milestone-title">Inside Jokes Galaxy</h3>
+                <p class="milestone-desc">Building our own universe of jokes and references that nobody else would understand.</p>
+            </div>
+            <div class="milestone-card">
+                <div class="milestone-icon">🚀</div>
+                <h3 class="milestone-title">The Future Plans</h3>
+                <p class="milestone-desc">All the places we want to go and things we want to do together. This is just the launchpad.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- LOVE METER -->
+    <section class="love-meter-section">
+        <div class="love-meter-container">
+            <h2 class="love-meter-title">Cosmic Compatibility Meter</h2>
+            <div class="meter-bar-container">
+                <div class="meter-bar" id="meter-bar"></div>
+            </div>
+            <div class="meter-percentage" id="meter-percentage">99.9%</div>
+            <p class="meter-text">According to celestial calculations, we're basically meant to be. Science says so.</p>
+        </div>
+    </section>
+    
+    <!-- MESSAGES SECTION -->
+    <section class="messages-section">
+        <h2 class="section-title">Nebula Notes</h2>
+        <div class="messages-grid">
+            <div class="message-card">
+                <p class="message-content">"You have this incredible energy that makes everything brighter. One month in, and I already can't imagine my days without your chaos."</p>
+                <span class="message-tag">Energy Boost</span>
+            </div>
+            <div class="message-card">
+                <p class="message-content">"Our conversations flow like starlight - constant, beautiful, and illuminating even the darkest moments."</p>
+                <span class="message-tag">Starlight Talks</span>
+            </div>
+            <div class="message-card">
+                <p class="message-content">"30 days ago, you were a stranger. Today, you're my favorite notification, my best part of the day, and my person."</p>
+                <span class="message-tag">Favorite Human</span>
+            </div>
+            <div class="message-card">
+                <p class="message-content">"They say it takes time to build something real. But with you, it felt like coming home from day one."</p>
+                <span class="message-tag">Instant Connection</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- GALAXY GALLERY -->
+    <section class="gallery-section">
+        <h2 class="section-title">Our Cosmic Gallery</h2>
+        <div class="gallery-container" id="gallery-container">
+            <!-- Images would be added here -->
+            <div class="gallery-item">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Memory #1</h3>
+                    <p class="gallery-desc">The beginning of everything</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Memory #2</h3>
+                    <p class="gallery-desc">When we realized this was special</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Memory #3</h3>
+                    <p class="gallery-desc">Building our own world</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Memory #4</h3>
+                    <p class="gallery-desc">The future looks bright</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- COUNTDOWN TO 2 MONTHS -->
+    <section class="countdown-section">
+        <h2 class="countdown-title">Countdown to Month 2</h2>
+        <p class="countdown-subtitle">The adventure is just beginning. Here's to the next 30 days and beyond!</p>
+        
+        <div class="countdown-grid">
+            <div class="countdown-item">
+                <div class="countdown-value" id="countdown-days">30</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="countdown-hours">0</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="countdown-minutes">0</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="countdown-seconds">0</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FINAL MESSAGE -->
+    <section class="final-section">
+        <p class="final-message">One month might not seem like much in the grand scheme of things, but with you, every single day feels like a <span>cosmic event</span>. Here's to many more months, years, and adventures together.</p>
+        
+        <button class="confetti-btn" id="confetti-btn">Launch Celebration Confetti!</button>
+        
+        <div class="signature">With all my love, Your Person</div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <p class="footer-text">Celebrating 30 days of cosmic connection with Priyanshi Kochar</p>
+        <p class="footer-text">Made with <span class="heart-pulse">❤️</span> for the girl who makes every day brighter</p>
+        <p class="footer-text">January 09, 2026 - February 09, 2026 | Our First Month</p>
+    </footer>
+    
+    <script>
+        // LOADING SCREEN
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const loadingBar = document.getElementById('loading-bar');
+            const loadingText = document.getElementById('loading-text');
+            
+            const loadingMessages = [
+                "Orbiting memory constellations...",
+                "Calibrating cosmic connection...",
+                "Syncing heartbeats across the galaxy...",
+                "Initializing infinite laughter protocol...",
+                "Uploading inside jokes to nebula network...",
+                "Preparing 30-day celebration sequence...",
+                "Finalizing stardust memories...",
+                "Launching love into orbit..."
+            ];
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                
+                loadingBar.style.width = progress + '%';
+                
+                // Change text every 15% progress
+                const msgIndex = Math.floor((progress / 100) * loadingMessages.length);
+                if (loadingMessages[msgIndex]) {
+                    loadingText.textContent = loadingMessages[msgIndex];
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        gsap.to(loadingScreen, {
+                            opacity: 0,
+                            duration: 1,
+                            onComplete: () => {
+                                loadingScreen.style.display = 'none';
+                                // Trigger initial animations
+                                initAnimations();
+                            }
+                        });
+                    }, 500);
+                }
+            }, 200);
+        });
+        
+        // COSMIC BACKGROUND CANVAS
+        const canvas = document.getElementById('cosmic-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        // Create stars and particles
+        const particles = [];
+        const starCount = 150;
+        
+        for (let i = 0; i < starCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 0.5,
+                speed: Math.random() * 0.5 + 0.1,
+                color: Math.random() > 0.7 ? '#00e5ff' : (Math.random() > 0.5 ? '#1a1aff' : '#ffffff'),
+                twinkleSpeed: Math.random() * 0.05 + 0.01,
+                twinkle: Math.random() * 0.5 + 0.5
+            });
+        }
+        
+        // Create shooting stars occasionally
+        let shootingStars = [];
+        
+        function createShootingStar() {
+            if (Math.random() > 0.99 && shootingStars.length < 3) {
+                shootingStars.push({
+                    x: Math.random() * canvas.width,
+                    y: 0,
+                    speed: Math.random() * 15 + 10,
+                    length: Math.random() * 50 + 30,
+                    size: Math.random() * 3 + 1,
+                    life: 1
+                });
+            }
+        }
+        
+        function animateCosmicBackground() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw particles (stars)
+            particles.forEach(p => {
+                // Twinkle effect
+                p.twinkle += p.twinkleSpeed;
+                const brightness = 0.5 + 0.5 * Math.sin(p.twinkle);
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * brightness, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = 0.7 * brightness;
+                ctx.fill();
+                
+                // Move stars slowly
+                p.y -= p.speed;
+                if (p.y < 0) {
+                    p.y = canvas.height;
+                    p.x = Math.random() * canvas.width;
+                }
+            });
+            
+            // Draw shooting stars
+            shootingStars.forEach((star, index) => {
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(star.x - star.length, star.y + star.length);
+                ctx.lineWidth = star.size;
+                ctx.strokeStyle = `rgba(0, 229, 255, ${star.life})`;
+                ctx.stroke();
+                
+                star.x += star.speed;
+                star.y += star.speed;
+                star.life -= 0.02;
+                
+                if (star.life <= 0) {
+                    shootingStars.splice(index, 1);
+                }
+            });
+            
+            createShootingStar();
+            
+            requestAnimationFrame(animateCosmicBackground);
+        }
+        
+        animateCosmicBackground();
+        
+        // INITIAL ANIMATIONS
+        function initAnimations() {
+            // Animate hero elements
+            gsap.from('.hero-title', {
+                duration: 1.5,
+                y: 50,
+                opacity: 0,
+                ease: "power3.out"
+            });
+            
+            gsap.from('.hero-subtitle', {
+                duration: 1.5,
+                y: 30,
+                opacity: 0,
+                delay: 0.3,
+                ease: "power3.out"
+            });
+            
+            gsap.from('.anniversary-date', {
+                duration: 1,
+                scale: 0,
+                opacity: 0,
+                delay: 0.8,
+                ease: "back.out(1.7)"
+            });
+            
+            gsap.from('.counter-box', {
+                duration: 1,
+                y: 40,
+                opacity: 0,
+                stagger: 0.1,
+                delay: 1,
+                ease: "power3.out"
+            });
+            
+            // Animate meter bar
+            setTimeout(() => {
+                gsap.to('#meter-bar', {
+                    duration: 3,
+                    scaleX: 1,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        // Make percentage count up
+                        let percentage = 0;
+                        const targetPercentage = 99.9;
+                        const percentageElement = document.getElementById('meter-percentage');
+                        
+                        const interval = setInterval(() => {
+                            percentage += 1;
+                            percentageElement.textContent = percentage.toFixed(1) + '%';
+                            
+                            if (percentage >= targetPercentage) {
+                                clearInterval(interval);
+                                percentageElement.textContent = targetPercentage.toFixed(1) + '%';
+                            }
+                        }, 30);
+                    }
+                });
+            }, 2000);
+            
+            // Add scroll animations
+            gsap.utils.toArray('.milestone-card, .message-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        end: "top 50%",
+                        toggleActions: "play none none none"
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    delay: i * 0.1
+                });
+            });
+        }
+        
+        // REAL-TIME COUNTERS
+        function updateCounters() {
+            // Anniversary date: January 9, 2026
+            const startDate = new Date('2026-01-09T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+            
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // Update counters
+            document.getElementById('days-counter').textContent = days;
+            document.getElementById('hours-counter').textContent = (days * 24) + hours;
+            document.getElementById('minutes-counter').textContent = (days * 24 * 60) + (hours * 60) + minutes;
+            document.getElementById('seconds-counter').textContent = (days * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60) + seconds;
+            
+            // Update countdown to 2 months
+            const nextMonthDate = new Date(startDate);
+            nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+            const countdownDiff = nextMonthDate - now;
+            
+            const countdownDays = Math.floor(countdownDiff / (1000 * 60 * 60 * 24));
+            const countdownHours = Math.floor((countdownDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const countdownMinutes = Math.floor((countdownDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const countdownSeconds = Math.floor((countdownDiff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown-days').textContent = countdownDays;
+            document.getElementById('countdown-hours').textContent = countdownHours.toString().padStart(2, '0');
+            document.getElementById('countdown-minutes').textContent = countdownMinutes.toString().padStart(2, '0');
+            document.getElementById('countdown-seconds').textContent = countdownSeconds.toString().padStart(2, '0');
+        }
+        
+        // Update counters every second
+        setInterval(updateCounters, 1000);
+        updateCounters(); // Initial call
+        
+        // CONFETTI BUTTON
+        document.getElementById('confetti-btn').addEventListener('click', function() {
+            // Create confetti explosion
+            confetti({
+                particleCount: 300,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#1a1aff', '#00e5ff', '#9d4edd', '#ff4fd8', '#ffffff']
+            });
+            
+            // Add additional effects
+            setTimeout(() => {
+                confetti({
+                    particleCount: 150,
+                    angle: 60,
+                    spread: 80,
+                    origin: { x: 0 },
+                    colors: ['#1a1aff', '#00e5ff', '#9d4edd']
+                });
+            }, 250);
+            
+            setTimeout(() => {
+                confetti({
+                    particleCount: 150,
+                    angle: 120,
+                    spread: 80,
+                    origin: { x: 1 },
+                    colors: ['#ff4fd8', '#9d4edd', '#1a1aff']
+                });
+            }, 500);
+            
+            // Add button animation
+            gsap.to(this, {
+                scale: 1.1,
+                duration: 0.2,
+                yoyo: true,
+                repeat: 1
+            });
+            
+            // Add screen shake for fun
+            gsap.to('body', {
+                x: 10,
+                y: 10,
+                duration: 0.1,
+                repeat: 5,
+                yoyo: true
+            });
+        });
+        
+        // GALLERY INTERACTIVITY
+        const galleryContainer = document.getElementById('gallery-container');
+        
+        // Add some placeholder images (in a real site, you'd replace these with actual images)
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const imageUrls = [
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80',
+            'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        ];
+        
+        galleryItems.forEach((item, index) => {
+            if (imageUrls[index]) {
+                const img = document.createElement('img');
+                img.src = imageUrls[index];
+                img.className = 'gallery-image';
+                img.alt = `Memory ${index + 1}`;
+                item.prepend(img);
+            }
+        });
+        
+        // Add horizontal scroll with mouse wheel
+        galleryContainer.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0) {
+                galleryContainer.scrollLeft += 50;
+            } else {
+                galleryContainer.scrollLeft -= 50;
+            }
+            e.preventDefault();
+        });
+        
+        // Add click and drag functionality
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        
+        galleryContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - galleryContainer.offsetLeft;
+            scrollLeft = galleryContainer.scrollLeft;
+        });
+        
+        galleryContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        
+        galleryContainer.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        
+        galleryContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - galleryContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            galleryContainer.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Add touch support for mobile
+        galleryContainer.addEventListener('touchstart', (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX - galleryContainer.offsetLeft;
+            scrollLeft = galleryContainer.scrollLeft;
+        });
+        
+        galleryContainer.addEventListener('touchend', () => {
+            isDown = false;
+        });
+        
+        galleryContainer.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX - galleryContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            galleryContainer.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Add random floating hearts on click
+        document.addEventListener('click', (e) => {
+            // Don't trigger on confetti button
+            if (e.target.id === 'confetti-btn') return;
+            
+            for (let i = 0; i < 3; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💙';
+                heart.style.position = 'fixed';
+                heart.style.left = `${e.clientX + (Math.random() - 0.5) * 100}px`;
+                heart.style.top = `${e.clientY + (Math.random() - 0.5) * 100}px`;
+                heart.style.fontSize = `${Math.random() * 30 + 20}px`;
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '9999';
+                heart.style.opacity = '0.8';
+                document.body.appendChild(heart);
+                
+                gsap.to(heart, {
+                    y: -Math.random() * 150 - 100,
+                    x: (Math.random() - 0.5) * 200,
+                    rotation: Math.random() * 360,
+                    opacity: 0,
+                    duration: Math.random() * 2 + 1,
+                    ease: "power2.out",
+                    onComplete: () => heart.remove()
+                });
+            }
+        });
+        
+        // Add scroll-triggered animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        gsap.utils.toArray('.section-title').forEach(title => {
+            gsap.from(title, {
+                scrollTrigger: {
+                    trigger: title,
+                    start: "top 90%",
+                    toggleActions: "play none none none"
+                },
+                duration: 1.5,
+                y: 50,
+                opacity: 0,
+                ease: "power3.out"
+            });
+        });
+        
+        // Add parallax effect to cosmic background
+        gsap.to(particles, {
+            y: 100,
+            ease: "none",
+            scrollTrigger: {
+                scrub: 1
+            }
+        });
+    </script>
+</body>
+</html>
