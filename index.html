@@ -6,7 +6,7 @@
     <title>Cosmic Love: 1 Month with Priyanshi</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -22,10 +22,12 @@
             --galaxy-purple: #9d4edd;
             --nova-pink: #ff4fd8;
             --love-red: #ff3366;
+            --electric-blue: #3a6bff;
             
             --gradient-primary: linear-gradient(135deg, #1a1aff 0%, #00e5ff 50%, #9d4edd 100%);
             --gradient-secondary: linear-gradient(135deg, #ff3366 0%, #ff4fd8 50%, #9d4edd 100%);
             --gradient-love: linear-gradient(135deg, #ff3366 0%, #ff4fd8 50%, #1a1aff 100%);
+            --gradient-cosmic: linear-gradient(135deg, #3a6bff 0%, #00e5ff 50%, #9d4edd 100%);
             
             --glass-bg: rgba(10, 10, 26, 0.85);
             --glass-border: rgba(26, 26, 255, 0.3);
@@ -77,7 +79,7 @@
             scroll-behavior: auto;
         }
         
-        /* LOADING SCREEN */
+        /* LOADING SCREEN - ENHANCED WITH NUMBERING */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -93,13 +95,14 @@
         }
         
         .loading-title {
-            font-size: 4rem;
-            margin-bottom: 30px;
+            font-size: 5rem;
+            margin-bottom: 20px;
             background: var(--gradient-love);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-align: center;
+            font-family: 'Playfair Display', serif;
         }
         
         .loading-subtitle {
@@ -111,27 +114,36 @@
             line-height: 1.5;
         }
         
+        .loading-number {
+            font-size: 2.5rem;
+            color: var(--starlight-cyan);
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
         .loading-bar-container {
-            width: 300px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
+            width: 400px;
+            max-width: 80%;
+            height: 8px;
+            background: rgba(138, 156, 255, 0.1);
+            border-radius: 4px;
             overflow: hidden;
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
         
         .loading-bar {
             height: 100%;
             width: 0%;
-            background: var(--gradient-love);
-            border-radius: 2px;
+            background: var(--gradient-cosmic);
+            border-radius: 4px;
             transition: width 0.3s ease;
         }
         
         .loading-text {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: var(--text-dim);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -147,7 +159,7 @@
             pointer-events: none;
         }
         
-        /* HERO SECTION */
+        /* HERO SECTION - ENHANCED */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -205,9 +217,15 @@
             margin-top: 30px;
             backdrop-filter: blur(20px);
             box-shadow: var(--glass-shadow);
+            transition: all 0.3s ease;
         }
         
-        /* COSMIC COUNTER */
+        .anniversary-date:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neon-pink);
+        }
+        
+        /* COSMIC COUNTER - ENHANCED */
         .cosmic-counter {
             display: flex;
             justify-content: center;
@@ -271,9 +289,9 @@
             color: var(--text-dim);
         }
         
-        /* LOVE STORY TIMELINE */
+        /* HYBRID TIMELINE - BEST OF BOTH */
         .timeline-section {
-            padding: 100px 5%;
+            padding: 150px 5%;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
@@ -289,45 +307,13 @@
             color: transparent;
         }
         
-        .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: var(--gradient-love);
-        }
-        
+        /* SIMPLE TIMELINE ITEMS (From first design) BUT ENHANCED */
         .timeline-item {
-            display: flex;
-            margin: 80px 0;
-            position: relative;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            justify-content: flex-end;
-            padding-right: calc(50% + 30px);
-        }
-        
-        .timeline-item:nth-child(even) {
-            justify-content: flex-start;
-            padding-left: calc(50% + 30px);
-        }
-        
-        .timeline-content {
+            margin: 60px 0;
+            padding: 40px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 25px;
-            padding: 40px;
-            width: 100%;
-            max-width: 500px;
             backdrop-filter: blur(20px);
             box-shadow: var(--glass-shadow);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -335,7 +321,7 @@
             overflow: hidden;
         }
         
-        .timeline-content::before {
+        .timeline-item::before {
             content: '';
             position: absolute;
             top: 0;
@@ -348,47 +334,37 @@
             transition: transform 0.5s ease;
         }
         
-        .timeline-content:hover {
-            transform: translateY(-10px);
+        .timeline-item:hover {
+            transform: translateY(-15px) scale(1.02);
             box-shadow: 
                 0 30px 70px rgba(0, 0, 0, 0.7),
                 var(--neon-pink);
         }
         
-        .timeline-content:hover::before {
+        .timeline-item:hover::before {
             transform: scaleX(1);
         }
         
         .timeline-date {
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             background: var(--gradient-love);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: inline-block;
+            font-family: 'Playfair Display', serif;
         }
         
         .timeline-text {
-            font-size: 1.2rem;
-            line-height: 1.7;
+            font-size: 1.3rem;
+            line-height: 1.8;
             color: var(--text-secondary);
+            font-family: 'Poppins', sans-serif;
         }
         
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: var(--gradient-love);
-            box-shadow: var(--neon-pink);
-            z-index: 1;
-        }
-        
-        /* IMPROVED GALLERY SECTION */
+        /* GALLERY - HYBRID SCROLLABLE WITH BUTTONS */
         .gallery-section {
             padding: 150px 5% 100px;
             position: relative;
@@ -398,107 +374,113 @@
         .gallery-container {
             position: relative;
             width: 100%;
-            height: 700px;
             overflow: hidden;
             border-radius: 30px;
             border: 2px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
             background: rgba(5, 5, 16, 0.6);
             backdrop-filter: blur(10px);
+            padding: 20px 0;
         }
         
-        .gallery-track {
+        .gallery-scroll {
             display: flex;
-            height: 100%;
-            width: max-content;
-            transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
         
-        .gallery-slide {
-            width: 100vw;
-            height: 100%;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
         }
         
-        .gallery-image {
-            width: 90%;
-            height: 90%;
-            object-fit: cover;
+        .photo-card {
+            flex: 0 0 auto;
+            width: 300px;
+            height: 400px;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            transition: transform 0.5s ease;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
         
-        .gallery-slide:hover .gallery-image {
-            transform: scale(1.03);
+        .photo-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.8),
+                var(--neon-pink);
         }
         
-        .gallery-nav {
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .photo-number {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            top: 20px;
+            left: 20px;
+            background: rgba(26, 26, 255, 0.9);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+        
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 70px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
             z-index: 10;
             backdrop-filter: blur(20px);
             box-shadow: var(--glass-shadow);
             transition: all 0.3s ease;
         }
         
-        .gallery-nav:hover {
+        .scroll-btn:hover {
             background: var(--gradient-love);
             transform: translateY(-50%) scale(1.1);
             box-shadow: var(--neon-pink);
         }
         
-        .gallery-nav.prev {
+        .scroll-btn.prev {
             left: 30px;
         }
         
-        .gallery-nav.next {
+        .scroll-btn.next {
             right: 30px;
         }
         
-        .gallery-nav span {
-            font-size: 2rem;
-            color: white;
-        }
-        
-        .gallery-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 40px;
-        }
-        
-        .gallery-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-indicator.active {
-            background: var(--gradient-love);
-            transform: scale(1.3);
-            box-shadow: var(--neon-pink);
-        }
-        
-        /* PASSWORD PROTECTED SECTION */
+        /* PASSWORD SECTION - ENHANCED */
         .private-section {
             padding: 150px 5%;
             text-align: center;
@@ -576,17 +558,17 @@
                 var(--neon-pink);
         }
         
-        .private-message {
-            margin-top: 40px;
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            opacity: 0.7;
+        .password-hint {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--text-dim);
+            font-style: italic;
         }
         
-        /* PRIVATE GALLERY (Hidden by default) */
+        /* PRIVATE GALLERY (Hidden by default) - ENHANCED */
         .private-gallery {
             display: none;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
             margin-top: 60px;
             animation: fadeIn 1s ease;
@@ -600,7 +582,7 @@
         .private-photo {
             border-radius: 20px;
             overflow: hidden;
-            height: 400px;
+            height: 300px;
             position: relative;
             cursor: pointer;
             box-shadow: var(--glass-shadow);
@@ -625,30 +607,24 @@
             transform: scale(1.1);
         }
         
-        .photo-overlay {
+        .photo-letter {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(5, 5, 16, 0.9), transparent);
-            padding: 30px 20px 20px;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s ease;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 51, 102, 0.9);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+            z-index: 2;
         }
         
-        .private-photo:hover .photo-overlay {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .photo-date {
-            font-size: 0.9rem;
-            color: var(--starlight-cyan);
-            margin-bottom: 5px;
-        }
-        
-        /* LOVE LETTER SECTION */
+        /* LOVE LETTER SECTION - ENHANCED */
         .letter-section {
             padding: 150px 5%;
             max-width: 900px;
@@ -680,6 +656,7 @@
             font-size: 1.3rem;
             line-height: 1.9;
             color: var(--text-secondary);
+            font-family: 'Poppins', sans-serif;
         }
         
         .letter-content p {
@@ -705,7 +682,7 @@
             color: transparent;
         }
         
-        /* COUNTDOWN TO FOREVER */
+        /* COUNTDOWN TO FOREVER - NEW SECTION */
         .forever-section {
             padding: 150px 5%;
             text-align: center;
@@ -789,7 +766,7 @@
             color: var(--text-dim);
         }
         
-        /* FINAL MESSAGE */
+        /* FINAL MESSAGE - ENHANCED */
         .final-section {
             padding: 200px 5% 150px;
             text-align: center;
@@ -847,7 +824,7 @@
                 var(--neon-pink);
         }
         
-        /* FOOTER */
+        /* FOOTER - ENHANCED */
         footer {
             padding: 100px 5% 60px;
             text-align: center;
@@ -874,7 +851,7 @@
             100% { transform: scale(1); }
         }
         
-        /* MODAL FOR PRIVATE PHOTOS */
+        /* MODAL FOR PHOTOS */
         .photo-modal {
             position: fixed;
             top: 0;
@@ -986,36 +963,27 @@
                 font-size: 2.8rem;
             }
             
-            .timeline::before {
-                left: 30px;
+            .photo-card {
+                width: 250px;
+                height: 350px;
             }
             
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                padding-left: 60px;
-                padding-right: 20px;
-                justify-content: flex-start;
-            }
-            
-            .timeline-dot {
-                left: 30px;
-            }
-            
-            .gallery-container {
-                height: 500px;
-            }
-            
-            .gallery-nav {
+            .scroll-btn {
                 width: 50px;
                 height: 50px;
+                font-size: 1.5rem;
             }
             
-            .gallery-nav.prev {
+            .scroll-btn.prev {
                 left: 15px;
             }
             
-            .gallery-nav.next {
+            .scroll-btn.next {
                 right: 15px;
+            }
+            
+            .private-gallery {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .letter-container {
@@ -1062,8 +1030,16 @@
                 font-size: 2.5rem;
             }
             
-            .gallery-container {
-                height: 400px;
+            .photo-card {
+                width: 200px;
+                height: 300px;
+            }
+            
+            .private-gallery {
+                grid-template-columns: 1fr;
+                max-width: 350px;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .letter-content {
@@ -1099,7 +1075,11 @@
         
         @media (max-width: 480px) {
             .loading-title {
-                font-size: 2.5rem;
+                font-size: 3rem;
+            }
+            
+            .loading-number {
+                font-size: 1.8rem;
             }
             
             .hero-title {
@@ -1114,12 +1094,13 @@
                 font-size: 2.2rem;
             }
             
-            .timeline-content {
+            .timeline-item {
                 padding: 30px 20px;
             }
             
-            .gallery-container {
-                height: 300px;
+            .photo-card {
+                width: 180px;
+                height: 250px;
             }
             
             .private-input {
@@ -1150,10 +1131,11 @@
     </style>
 </head>
 <body>
-    <!-- LOADING SCREEN -->
+    <!-- LOADING SCREEN WITH NUMBERING -->
     <div class="loading-screen" id="loading-screen">
         <h1 class="loading-title">Cosmic Love Story</h1>
         <p class="loading-subtitle">Loading our 1-month journey with Priyanshi</p>
+        <div class="loading-number" id="loading-number">0/27</div>
         <div class="loading-bar-container">
             <div class="loading-bar" id="loading-bar"></div>
         </div>
@@ -1192,109 +1174,79 @@
         </div>
     </section>
     
-    <!-- LOVE STORY TIMELINE -->
+    <!-- TIMELINE -->
     <section class="timeline-section">
         <h2 class="section-title">Our Cosmic Timeline</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">January 4th</div>
-                    <div class="timeline-text">The day I first became aware that you existed. I didn't know then that you would slowly become someone so important to me, someone I would think about every single day.</div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">January 6th - VR Mall</div>
-                    <div class="timeline-text">The day I first saw you in real life. You looked so shy, so innocent, so cute… like this soft, pure soul standing in front of me. And I swear, the moment I saw you, something inside me just said — <em>there's something special about her.</em></div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">That First Meet</div>
-                    <div class="timeline-text">You called and asked, "Are you in H&M?" I went there… and you weren't there. Then I texted you, and you were like, "Main toh bahar aa gayi." And I was like, brooo 😭 Then I came outside… and that was it. That was the moment. Crazy how something so small turned into something so big for me.</div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">The Comfort</div>
-                    <div class="timeline-text">What I still can't believe is how comfortable I felt with you on the first meet itself. Like… crazy wala crazy. Like I already knew you. Like I could already be myself around you.</div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">January 9th - Our First Kiss</div>
-                    <div class="timeline-text">I was nervous. Excited. Happy. Everything at once. That day made me realize how close we were getting, how natural everything felt with you.</div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Becoming "Us"</div>
-                    <div class="timeline-text">And slowly… we didn't just become two people meeting. We became <em>us.</em> Two people who trust each other. Who feel safe with each other. Who can be vulnerable with each other.</div>
-                </div>
-            </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-date">January 4th</div>
+            <div class="timeline-text">The day I first became aware that you existed. I didn't know then that you would slowly become someone so important to me.</div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-date">January 6th - VR Mall</div>
+            <div class="timeline-text">The day I first saw you in real life. You looked so shy, so innocent, so cute… like this soft, pure soul standing in front of me.</div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-date">That First Meet</div>
+            <div class="timeline-text">You called and asked, "Are you in H&M?" I went there… and you weren't there. Then I texted you, and you were like, "Main toh bahar aa gayi." And I was like, brooo 😭</div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-date">January 9th - Our First Kiss</div>
+            <div class="timeline-text">I was nervous. Excited. Happy. Everything at once. That day made me realize how close we were getting.</div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-date">Becoming "Us"</div>
+            <div class="timeline-text">And slowly… we didn't just become two people meeting. We became <em>us.</em> Two people who trust each other.</div>
         </div>
     </section>
     
-    <!-- IMPROVED GALLERY SECTION -->
+    <!-- GALLERY - BUTTON SCROLLABLE (ENHANCED) -->
     <section class="gallery-section">
-        <h2 class="section-title">Our Cosmic Moments</h2>
+        <h2 class="section-title">Our Gallery (1-27)</h2>
+        
         <div class="gallery-container">
-            <div class="gallery-track" id="gallery-track">
-                <!-- Slides will be added via JavaScript -->
+            <button class="scroll-btn prev" onclick="scrollGallery(-320)">‹</button>
+            
+            <div class="gallery-scroll" id="gallery-scroll">
+                <!-- Images 1-27 will be loaded here -->
             </div>
-            <div class="gallery-nav prev" id="prev-slide">
-                <span>‹</span>
-            </div>
-            <div class="gallery-nav next" id="next-slide">
-                <span>›</span>
-            </div>
-        </div>
-        <div class="gallery-indicators" id="gallery-indicators">
-            <!-- Indicators will be added via JavaScript -->
+            
+            <button class="scroll-btn next" onclick="scrollGallery(320)">›</button>
         </div>
     </section>
     
-    <!-- PASSWORD PROTECTED SECTION -->
+    <!-- PASSWORD SECTION -->
     <section class="private-section">
         <div class="private-lock">
             <span>🔒</span>
         </div>
         <h2 class="section-title">Private Memories</h2>
-        <p class="hero-subtitle">Enter our special password to unlock our most cherished moments</p>
+        <p class="hero-subtitle">Enter password to unlock 3 special memories</p>
         
         <input type="password" class="private-input" id="password-input" placeholder="Enter password..." maxlength="20">
-        <button class="private-btn" id="unlock-btn">Unlock Our Memories</button>
-        <p class="private-message">Hint: It's the day our story truly began</p>
+        <button class="private-btn" id="unlock-btn">Unlock Memories</button>
+        <p class="password-hint">Hint: 0901 (Our special day)</p>
         
-        <!-- PRIVATE GALLERY (Hidden until unlocked) -->
+        <!-- PRIVATE GALLERY - 3 IMAGES -->
         <div class="private-gallery" id="private-gallery">
-            <!-- Private photos will be loaded here -->
+            <!-- Images a, b, c will be loaded here -->
         </div>
     </section>
     
-    <!-- LOVE LETTER SECTION -->
+    <!-- LOVE LETTER -->
     <section class="letter-section">
+        <h2 class="section-title">My Love Letter</h2>
         <div class="letter-container">
             <div class="letter-content">
                 <p>There are moments with you that feel unreal — like how did I get this lucky?</p>
                 
-                <p>You are shy, you blush, you get awkward sometimes… and I swear it is the cutest thing ever. I love seeing that side of you. I love knowing I get to see sides of you that not everyone does.</p>
-                
-                <p>And baby, gentle reminder — we NEED to take more pictures together 😤 Like a LOT more. Because I want memories of us everywhere. I want proof of all these moments that make me so happy.</p>
-                
-                <p>But more than all these memories… I just want you to know this:</p>
+                <p>You are shy, you blush, you get awkward sometimes… and I swear it is the cutest thing ever.</p>
                 
                 <p>I don't want this to be temporary. I don't want you to be just a phase in my life. I don't want to imagine a future where you are not there.</p>
-                
-                <p>You make me feel calm. You make me feel wanted. You make me feel like I can be myself — fully, honestly, without fear.</p>
-                
-                <p>I don't know what the future holds. But I know this — I want you in it. For more months. More years. More memories. More laughs. More hugs. More everything.</p>
                 
                 <p>Thank you for coming into my life. Thank you for trusting me. Thank you for being you.</p>
                 
@@ -1324,29 +1276,29 @@
             </div>
             <div class="forever-box">
                 <div class="forever-number" id="forever-hours">720</div>
-                <div class="forever-label">Hours</div>
+                <div class="counter-label">Hours</div>
             </div>
         </div>
     </section>
     
-    <!-- FINAL MESSAGE -->
+    <!-- FINAL SECTION -->
     <section class="final-section">
-        <h2 class="section-title">Happy 1 Month, My Love ♡</h2>
-        <p class="final-message">One month might not seem like much in the grand scheme of things, but with you, every single day feels like a <span>cosmic event</span> written in the stars just for us.</p>
+        <h2 class="section-title">Happy 1 Month ♡</h2>
+        <p class="final-message">One month might not seem like much, but with you, every single day feels like a <span>cosmic event</span> written in the stars just for us.</p>
         
         <button class="love-btn" id="confetti-btn">Launch Cosmic Celebration!</button>
         
-        <div class="signature">Forever Yours, Your Person</div>
+        <div class="signature">Forever Yours</div>
     </section>
     
     <!-- FOOTER -->
     <footer>
         <p class="footer-text">Celebrating 30 days of cosmic love with Priyanshi Kochar</p>
         <p class="footer-text">Made with <span class="heart-pulse">❤️</span> for the girl who stole my heart</p>
-        <p class="footer-text">January 09, 2026 - February 09, 2026 | Our First Month Together</p>
+        <p class="footer-text">January 09, 2026 - February 09, 2026</p>
     </footer>
     
-    <!-- PHOTO MODAL -->
+    <!-- MODAL -->
     <div class="photo-modal" id="photo-modal">
         <div class="modal-content">
             <button class="modal-close" id="modal-close">&times;</button>
@@ -1357,49 +1309,57 @@
     </div>
     
     <script>
-        // LOADING SCREEN
+        // LOADING SYSTEM WITH NUMBERING
         document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.getElementById('loading-screen');
             const loadingBar = document.getElementById('loading-bar');
+            const loadingNumber = document.getElementById('loading-number');
             const loadingText = document.getElementById('loading-text');
             
-            const loadingMessages = [
-                "Counting stars in our universe...",
-                "Loading our cosmic connection...",
-                "Syncing heartbeats across dimensions...",
-                "Initializing infinite love protocol...",
-                "Uploading memories to nebula network...",
-                "Preparing 30-day celebration sequence...",
-                "Finalizing stardust moments...",
-                "Launching love into orbit..."
-            ];
+            let loadedImages = 0;
+            const totalImages = 27; // 27 normal images
             
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress > 100) progress = 100;
+            // Preload images function
+            function preloadImages() {
+                const images = [];
                 
-                loadingBar.style.width = progress + '%';
-                
-                const msgIndex = Math.floor((progress / 100) * loadingMessages.length);
-                if (loadingMessages[msgIndex]) {
-                    loadingText.textContent = loadingMessages[msgIndex];
+                // Load public images 1-27.jpeg
+                for (let i = 1; i <= totalImages; i++) {
+                    const img = new Image();
+                    img.src = `${i}.jpeg`;
+                    img.onload = img.onerror = () => {
+                        loadedImages++;
+                        const progress = Math.floor((loadedImages / totalImages) * 100);
+                        loadingBar.style.width = progress + '%';
+                        loadingNumber.textContent = `${loadedImages}/${totalImages}`;
+                        
+                        if (loadedImages === totalImages) {
+                            loadingText.textContent = 'Complete! Loading website...';
+                            setTimeout(() => {
+                                gsap.to(loadingScreen, {
+                                    opacity: 0,
+                                    duration: 0.5,
+                                    onComplete: () => {
+                                        loadingScreen.style.display = 'none';
+                                        initEverything();
+                                    }
+                                });
+                            }, 500);
+                        }
+                    };
+                    images.push(img);
                 }
                 
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        gsap.to(loadingScreen, {
-                            opacity: 0,
-                            duration: 1,
-                            onComplete: () => {
-                                loadingScreen.style.display = 'none';
-                                initEverything();
-                            }
-                        });
-                    }, 500);
-                }
-            }, 200);
+                // Also preload private images a, b, c
+                ['a', 'b', 'c'].forEach(letter => {
+                    const img = new Image();
+                    img.src = `${letter}.jpeg`;
+                    // Don't count these in loading bar, just preload
+                });
+            }
+            
+            // Start preloading
+            setTimeout(preloadImages, 100);
         });
         
         // INITIALIZE EVERYTHING
@@ -1411,6 +1371,7 @@
             initPasswordProtection();
             initModal();
             initAnimations();
+            initCelebrations();
         }
         
         // COSMIC BACKGROUND CANVAS
@@ -1550,145 +1511,53 @@
             updateCounters();
         }
         
-        // IMPROVED GALLERY
+        // GALLERY - BUTTON SCROLLABLE (ENHANCED)
         function initGallery() {
-            const galleryTrack = document.getElementById('gallery-track');
-            const prevBtn = document.getElementById('prev-slide');
-            const nextBtn = document.getElementById('next-slide');
-            const indicatorsContainer = document.getElementById('gallery-indicators');
+            const galleryScroll = document.getElementById('gallery-scroll');
+            const totalImages = 27;
             
-            const images = [
-                {
-                    url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-                    title: 'Our Beginning',
-                    desc: 'The start of something beautiful'
-                },
-                {
-                    url: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-                    title: 'Cosmic Connection',
-                    desc: 'When our stars aligned'
-                },
-                {
-                    url: 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-                    title: 'Starlight Moments',
-                    desc: 'Every moment shines brighter with you'
-                },
-                {
-                    url: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-                    title: 'Galaxy of Love',
-                    desc: 'Exploring the universe together'
-                },
-                {
-                    url: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-                    title: 'Nebula Dreams',
-                    desc: 'Dreaming of our future together'
-                }
-            ];
-            
-            let currentSlide = 0;
-            
-            images.forEach((image, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'gallery-slide';
-                slide.innerHTML = `
-                    <img src="${image.url}" alt="${image.title}" class="gallery-image">
-                    <div class="photo-overlay">
-                        <div class="photo-date">Memory ${index + 1}</div>
-                        <h3 class="gallery-title">${image.title}</h3>
-                        <p class="gallery-desc">${image.desc}</p>
-                    </div>
+            // Create gallery items for images 1-27
+            for (let i = 1; i <= totalImages; i++) {
+                const photoCard = document.createElement('div');
+                photoCard.className = 'photo-card';
+                photoCard.innerHTML = `
+                    <div class="photo-number">${i}</div>
+                    <img src="${i}.jpeg" alt="Memory ${i}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
                 `;
-                galleryTrack.appendChild(slide);
                 
-                const indicator = document.createElement('div');
-                indicator.className = 'gallery-indicator';
-                if (index === 0) indicator.classList.add('active');
-                indicator.addEventListener('click', () => goToSlide(index));
-                indicatorsContainer.appendChild(indicator);
-            });
-            
-            function updateGallery() {
-                const slideWidth = document.querySelector('.gallery-slide').offsetWidth;
-                galleryTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-                
-                document.querySelectorAll('.gallery-indicator').forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentSlide);
+                photoCard.addEventListener('click', () => {
+                    openModal({
+                        title: `Memory ${i}`,
+                        desc: `This is our ${i}th beautiful moment together.`,
+                        image: `${i}.jpeg`
+                    });
                 });
-            }
-            
-            function goToSlide(index) {
-                currentSlide = index;
-                if (currentSlide < 0) currentSlide = images.length - 1;
-                if (currentSlide >= images.length) currentSlide = 0;
-                updateGallery();
-            }
-            
-            function nextSlide() {
-                currentSlide++;
-                if (currentSlide >= images.length) currentSlide = 0;
-                updateGallery();
-            }
-            
-            function prevSlide() {
-                currentSlide--;
-                if (currentSlide < 0) currentSlide = images.length - 1;
-                updateGallery();
-            }
-            
-            prevBtn.addEventListener('click', prevSlide);
-            nextBtn.addEventListener('click', nextSlide);
-            
-            // Auto slide every 5 seconds
-            setInterval(nextSlide, 5000);
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') prevSlide();
-                if (e.key === 'ArrowRight') nextSlide();
-            });
-            
-            // Swipe support for mobile
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            galleryTrack.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-            
-            galleryTrack.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-            
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                const diff = touchStartX - touchEndX;
                 
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0) {
-                        nextSlide(); // Swipe left
-                    } else {
-                        prevSlide(); // Swipe right
-                    }
-                }
+                galleryScroll.appendChild(photoCard);
             }
-            
-            updateGallery();
         }
         
-        // PASSWORD PROTECTION
+        // SCROLL FUNCTION FOR GALLERY
+        function scrollGallery(amount) {
+            const gallery = document.getElementById('gallery-scroll');
+            gallery.scrollBy({
+                left: amount,
+                behavior: 'smooth'
+            });
+        }
+        
+        // PASSWORD PROTECTION - 3 PRIVATE IMAGES (ENHANCED)
         function initPasswordProtection() {
             const unlockBtn = document.getElementById('unlock-btn');
             const passwordInput = document.getElementById('password-input');
             const privateGallery = document.getElementById('private-gallery');
             
-            // Correct password - using your anniversary date
-            const correctPassword = '09012026'; // DDMMYYYY format
+            const correctPassword = '0901'; // Simple password
             
             unlockBtn.addEventListener('click', function() {
                 const enteredPassword = passwordInput.value.trim();
                 
-                if (enteredPassword === correctPassword || enteredPassword.toLowerCase() === '0901' || enteredPassword.toLowerCase() === 'jan9') {
+                if (enteredPassword === correctPassword) {
                     // Correct password
                     gsap.to(passwordInput, {
                         borderColor: '#00ff88',
@@ -1706,15 +1575,12 @@
                         }
                     });
                     
-                    // Launch celebration
-                    setTimeout(() => {
-                        confetti({
-                            particleCount: 150,
-                            spread: 70,
-                            origin: { y: 0.6 },
-                            colors: ['#ff3366', '#ff4fd8', '#9d4edd', '#00e5ff']
-                        });
-                    }, 500);
+                    // Mini celebration
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
                 } else {
                     // Wrong password
                     gsap.to(passwordInput, {
@@ -1737,54 +1603,55 @@
                 }
             });
             
-            function showPrivateGallery() {
-                // Private photos data
-                const privatePhotos = [
-                    { date: "Jan 6, 2026", title: "First Meeting", desc: "The day our eyes met for the first time" },
-                    { date: "Jan 9, 2026", title: "Our First Kiss", desc: "A moment I'll remember forever" },
-                    { date: "Jan 15, 2026", title: "Late Night Talks", desc: "When we realized this was special" },
-                    { date: "Jan 22, 2026", title: "Our First Date", desc: "Every moment felt magical" },
-                    { date: "Jan 30, 2026", title: "Building Memories", desc: "Creating our own little world" },
-                    { date: "Feb 5, 2026", title: "Growing Closer", desc: "Every day feels better than the last" }
-                ];
-                
-                // Create photo elements
-                privatePhotos.forEach(photo => {
-                    const photoElement = document.createElement('div');
-                    photoElement.className = 'private-photo';
-                    photoElement.innerHTML = `
-                        <img src="https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="${photo.title}">
-                        <div class="photo-overlay">
-                            <div class="photo-date">${photo.date}</div>
-                            <h3>${photo.title}</h3>
-                            <p>${photo.desc}</p>
-                        </div>
-                    `;
-                    
-                    photoElement.addEventListener('click', () => openPhotoModal(photo));
-                    privateGallery.appendChild(photoElement);
-                });
-                
-                privateGallery.style.display = 'grid';
-                
-                gsap.from('.private-photo', {
-                    opacity: 0,
-                    y: 50,
-                    duration: 1,
-                    stagger: 0.1,
-                    ease: "power3.out"
-                });
-            }
-            
-            // Allow Enter key to submit password
+            // Enter key support
             passwordInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     unlockBtn.click();
                 }
             });
+            
+            function showPrivateGallery() {
+                // Private images a, b, c (3 images)
+                const privatePhotos = [
+                    { letter: 'A', title: "Special A", desc: "Our first private moment together" },
+                    { letter: 'B', title: "Special B", desc: "A memory I'll cherish forever" },
+                    { letter: 'C', title: "Special C", desc: "When I knew this was something real" }
+                ];
+                
+                // Create private gallery
+                privatePhotos.forEach(photo => {
+                    const privatePhoto = document.createElement('div');
+                    privatePhoto.className = 'private-photo';
+                    privatePhoto.innerHTML = `
+                        <div class="photo-letter">${photo.letter}</div>
+                        <img src="${photo.letter.toLowerCase()}.jpeg" alt="${photo.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                    `;
+                    
+                    privatePhoto.addEventListener('click', () => {
+                        openModal({
+                            title: `Private ${photo.letter}`,
+                            desc: `${photo.desc}. This is one of our most cherished memories.`,
+                            image: `${photo.letter.toLowerCase()}.jpeg`
+                        });
+                    });
+                    
+                    privateGallery.appendChild(privatePhoto);
+                });
+                
+                privateGallery.style.display = 'grid';
+                
+                // Animate in
+                gsap.from('.private-photo', {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: "power3.out"
+                });
+            }
         }
         
-        // PHOTO MODAL
+        // MODAL (ENHANCED)
         function initModal() {
             const modal = document.getElementById('photo-modal');
             const modalClose = document.getElementById('modal-close');
@@ -1792,14 +1659,15 @@
             const modalTitle = document.getElementById('modal-title');
             const modalStory = document.getElementById('modal-story');
             
-            function openPhotoModal(photo) {
-                modalImage.src = `https://images.unsplash.com/photo-${Math.floor(Math.random() * 1000)}?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80`;
-                modalTitle.textContent = photo.title;
-                modalStory.textContent = photo.desc + " - This is one of our precious moments that I'll cherish forever. Every memory with you feels like a dream come true.";
+            window.openModal = function(data) {
+                modalImage.src = data.image;
+                modalTitle.textContent = data.title;
+                modalStory.textContent = data.desc;
                 
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 
+                // Fade in animation
                 gsap.fromTo('.modal-content',
                     { scale: 0.8, opacity: 0 },
                     { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.2)" }
@@ -1822,85 +1690,6 @@
                 if (e.target === modal) {
                     modalClose.click();
                 }
-            });
-            
-            window.openPhotoModal = openPhotoModal;
-        }
-        
-        // CONFETTI BUTTON
-        document.getElementById('confetti-btn').addEventListener('click', function() {
-            // Major confetti explosion
-            confetti({
-                particleCount: 400,
-                spread: 120,
-                origin: { y: 0.6 },
-                colors: ['#ff3366', '#ff4fd8', '#9d4edd', '#1a1aff', '#00e5ff', '#ffffff']
-            });
-            
-            setTimeout(() => {
-                confetti({
-                    particleCount: 200,
-                    angle: 60,
-                    spread: 100,
-                    origin: { x: 0 },
-                    colors: ['#ff3366', '#ff4fd8', '#9d4edd']
-                });
-            }, 250);
-            
-            setTimeout(() => {
-                confetti({
-                    particleCount: 200,
-                    angle: 120,
-                    spread: 100,
-                    origin: { x: 1 },
-                    colors: ['#1a1aff', '#00e5ff', '#9d4edd']
-                });
-            }, 500);
-            
-            // Button animation
-            gsap.to(this, {
-                scale: 1.15,
-                duration: 0.2,
-                yoyo: true,
-                repeat: 2
-            });
-            
-            // Screen celebration
-            gsap.to('body', {
-                x: 15,
-                y: 15,
-                duration: 0.1,
-                repeat: 5,
-                yoyo: true
-            });
-            
-            // Floating hearts
-            for (let i = 0; i < 20; i++) {
-                createFloatingHeart();
-            }
-        });
-        
-        // FLOATING HEARTS
-        function createFloatingHeart() {
-            const heart = document.createElement('div');
-            heart.innerHTML = ['❤️', '💖', '💕', '💙', '💜'][Math.floor(Math.random() * 5)];
-            heart.style.position = 'fixed';
-            heart.style.left = `${Math.random() * 100}vw`;
-            heart.style.top = `100vh`;
-            heart.style.fontSize = `${Math.random() * 40 + 20}px`;
-            heart.style.pointerEvents = 'none';
-            heart.style.zIndex = '9998';
-            heart.style.opacity = '0.9';
-            document.body.appendChild(heart);
-            
-            gsap.to(heart, {
-                y: -Math.random() * 300 - 200,
-                x: (Math.random() - 0.5) * 200,
-                rotation: Math.random() * 360,
-                opacity: 0,
-                duration: Math.random() * 3 + 2,
-                ease: "power2.out",
-                onComplete: () => heart.remove()
             });
         }
         
@@ -1942,10 +1731,10 @@
             });
             
             // Timeline animations
-            gsap.utils.toArray('.timeline-content').forEach((content, i) => {
-                gsap.from(content, {
+            gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+                gsap.from(item, {
                     scrollTrigger: {
-                        trigger: content,
+                        trigger: item,
                         start: "top 85%",
                         toggleActions: "play none none none"
                     },
@@ -1983,20 +1772,77 @@
                 stagger: 0.1,
                 ease: "power3.out"
             });
+        }
+        
+        // CELEBRATIONS
+        function initCelebrations() {
+            const confettiBtn = document.getElementById('confetti-btn');
             
-            // Add scroll-triggered glow to section titles
-            gsap.utils.toArray('.section-title, .forever-title').forEach(title => {
-                gsap.from(title, {
-                    scrollTrigger: {
-                        trigger: title,
-                        start: "top 90%",
-                        toggleActions: "play none none none"
-                    },
-                    duration: 1.5,
-                    y: 30,
-                    opacity: 0,
-                    ease: "power3.out"
+            confettiBtn.addEventListener('click', function() {
+                // Major confetti explosion
+                confetti({
+                    particleCount: 400,
+                    spread: 120,
+                    origin: { y: 0.6 },
+                    colors: ['#ff3366', '#ff4fd8', '#9d4edd', '#1a1aff', '#00e5ff', '#ffffff']
                 });
+                
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 200,
+                        angle: 60,
+                        spread: 100,
+                        origin: { x: 0 },
+                        colors: ['#ff3366', '#ff4fd8', '#9d4edd']
+                    });
+                }, 250);
+                
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 200,
+                        angle: 120,
+                        spread: 100,
+                        origin: { x: 1 },
+                        colors: ['#1a1aff', '#00e5ff', '#9d4edd']
+                    });
+                }, 500);
+                
+                // Button animation
+                gsap.to(this, {
+                    scale: 1.15,
+                    duration: 0.2,
+                    yoyo: true,
+                    repeat: 2
+                });
+                
+                // Floating hearts
+                for (let i = 0; i < 20; i++) {
+                    createFloatingHeart();
+                }
+            });
+        }
+        
+        // FLOATING HEARTS
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = ['❤️', '💖', '💕', '💙', '💜'][Math.floor(Math.random() * 5)];
+            heart.style.position = 'fixed';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.top = `100vh`;
+            heart.style.fontSize = `${Math.random() * 40 + 20}px`;
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9998';
+            heart.style.opacity = '0.9';
+            document.body.appendChild(heart);
+            
+            gsap.to(heart, {
+                y: -Math.random() * 300 - 200,
+                x: (Math.random() - 0.5) * 200,
+                rotation: Math.random() * 360,
+                opacity: 0,
+                duration: Math.random() * 3 + 2,
+                ease: "power2.out",
+                onComplete: () => heart.remove()
             });
         }
         
